@@ -3,18 +3,24 @@
         <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-        <ion-title>Slayer.io</ion-title>
+        <div *ngFor="let u of uni | async">
+            <ion-title>{{ u.$key }}</ion-title>
+        </div>
     </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
+    <div align="center" *ngFor="let t of temp | async">
+        <h4>¡Bienvenido Slayer! Unete a uno de los siguientes grupos de la {{ t.Nombre }}</h4>
+    </div>
+    <br>
     <ion-list>
-        <button ion-item (click)="gotoHome()">
-      Home
-      <div item-right>
-        Prueba 
-      </div>
+        <button ion-item *ngFor="let g of group | async" (click)="gotoGroup(g)">
+            {{ g.Nombre }} 
+            <div item-right>
+                ({{ g.CapacidadAct}}/{{ g.CapacidadMax}})
+            </div>
     </button>
     </ion-list>
 
