@@ -18,7 +18,7 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, 
-  public af: AngularFireModule, public afAuth: AngularFireAuth) 
+  public af: AngularFireModule) 
   {
     this.initializeApp();
     

@@ -10,6 +10,7 @@ import { ListPage } from '../pages/list/list';
 import { Inscripcion } from '../pages/inscripcion/inscripcion';
 
 import { AuthData } from '../providers/auth-data';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -50,7 +51,9 @@ export const firebaseConfig = {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    BarcodeScanner
+    BarcodeScanner,
+    AngularFireAuth,
+    AuthData
   ]
 })
 export class AppModule {}
