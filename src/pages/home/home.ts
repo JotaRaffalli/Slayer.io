@@ -56,7 +56,7 @@ export class HomePage {
                     //armamos el objeto a pasar
                     this.Objetivo = snapshot;
                     this.Objetivo.id = this.Objetivo_Id;
-                    this.navCtrl.push( Murdered, {Objetivo_Asesinado: this.Objetivo} );
+                    this.navCtrl.push( Murdered, {Objetivo_Asesinado: this.Objetivo} ); // Cambiar esto a modals si se puede
                 } );
                                            
                 }
