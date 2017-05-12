@@ -9,8 +9,11 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { Inscripcion } from '../pages/inscripcion/inscripcion';
 
+import { AuthData } from '../providers/auth-data';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import {BarcodeScanner} from '@ionic-native/barcode-scanner';
 
 export const firebaseConfig = {
   
@@ -46,7 +49,8 @@ export const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    BarcodeScanner
   ]
 })
 export class AppModule {}
