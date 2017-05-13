@@ -7,7 +7,12 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { Leaderboard } from '../pages/leaderboard/leaderboard';
+import { PatchNotes } from '../pages/patch-notes/patch-notes';
+import { Perfil } from '../pages/perfil/perfil';
+import { Universidad } from '../pages/universidad/universidad';
 import { Inscripcion } from '../pages/inscripcion/inscripcion';
+import { Grupos } from '../pages/grupos/grupos'; 
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -28,7 +33,12 @@ export const firebaseConfig = {
     MyApp,
     HomePage,
     ListPage,
-    Inscripcion
+    Inscripcion,
+    Perfil, 
+    PatchNotes,
+    Universidad,
+    Grupos,
+    Leaderboard
   ],
   imports: [
     BrowserModule,
@@ -41,7 +51,13 @@ export const firebaseConfig = {
     MyApp,
     HomePage,
     ListPage,
-    Inscripcion
+    Inscripcion, 
+    Perfil, 
+    PatchNotes,
+    Universidad,
+    Grupos,
+    Leaderboard
+
   ],
   providers: [
     StatusBar,

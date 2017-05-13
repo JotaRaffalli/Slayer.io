@@ -5,6 +5,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireModule } from 'angularfire2';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { Leaderboard } from '../pages/leaderboard/leaderboard';
+import { PatchNotes } from '../pages/patch-notes/patch-notes';
+import { Perfil } from '../pages/perfil/perfil';
+import { Universidad } from '../pages/universidad/universidad';
+import { Inscripcion } from '../pages/inscripcion/inscripcion';
+import { Grupos } from '../pages/grupos/grupos'; 
 
 @Component({
   templateUrl: 'app.html'
@@ -21,8 +27,11 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: 'Perfil', component: Perfil},
+      { title: 'Temporada', component: Universidad },
+      { title: 'Leaderboard', component: Leaderboard },
+      { title: 'Patch Notes', component: PatchNotes},
+      { title: 'ListPage', component: ListPage }
     ];
 
   }
