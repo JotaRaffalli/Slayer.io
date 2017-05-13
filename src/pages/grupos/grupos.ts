@@ -33,8 +33,9 @@ export class Grupos {
   }
 
   gotoGroup(sala) {
-  
-    this.navCtrl.push(Inscripcion, {sala: sala});
+  var myJSON = JSON.stringify(sala);
+  console.log(myJSON);
+    //this.navCtrl.push(Inscripcion, {sala: sala});
   }
 
 }

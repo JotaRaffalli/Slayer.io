@@ -16,7 +16,8 @@ export class Inscripcion {
   constructor(public navCtrl: NavController, public navParams: NavParams, public database: AngularFireDatabase) {
 
     this.sala = navParams.get('sala');
-    this.sala_nombre = this.sala.nombre;
+    console.log(this.sala);
+    //this.sala_nombre = this.sala.nombre;
 
 
   }
