@@ -14,8 +14,12 @@ import { Universidad } from '../pages/universidad/universidad';
 import { Inscripcion } from '../pages/inscripcion/inscripcion';
 import { Grupos } from '../pages/grupos/grupos'; 
 
+import { AuthData } from '../providers/auth-data';
+import { AngularFireAuth } from 'angularfire2/auth';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import {BarcodeScanner} from '@ionic-native/barcode-scanner';
 
 export const firebaseConfig = {
   
@@ -62,7 +66,10 @@ export const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    BarcodeScanner,
+    AngularFireAuth,
+    AuthData
   ]
 })
 export class AppModule {}

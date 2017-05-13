@@ -5,12 +5,16 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireModule } from 'angularfire2';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+<<<<<<< HEAD
 import { Leaderboard } from '../pages/leaderboard/leaderboard';
 import { PatchNotes } from '../pages/patch-notes/patch-notes';
 import { Perfil } from '../pages/perfil/perfil';
 import { Universidad } from '../pages/universidad/universidad';
 import { Inscripcion } from '../pages/inscripcion/inscripcion';
 import { Grupos } from '../pages/grupos/grupos'; 
+=======
+import { AngularFireAuth } from 'angularfire2/auth';
+>>>>>>> origin/master
 
 @Component({
   templateUrl: 'app.html'
@@ -22,9 +26,11 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public af: AngularFireModule) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, 
+  public af: AngularFireModule) 
+  {
     this.initializeApp();
-
+    
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Perfil', component: Perfil},
