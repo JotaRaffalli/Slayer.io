@@ -11,16 +11,13 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 export class Inscripcion {
 
   hola: FirebaseListObservable<any>;
-  private group: any;
-
+  private sala: any;
+  private sala_nombre: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, public database: AngularFireDatabase) {
 
-    this.group = navParams.get('sala');
-    this.hola = this.database.list('/Temporada/Temporada1/Unimet', {
-      query: {
-          equalTo: this.group.$key
-        }
-    });
+    this.sala = navParams.get('sala');
+    this.sala_nombre = this.sala.nombre;
+
 
   }
 

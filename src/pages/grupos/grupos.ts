@@ -14,6 +14,7 @@ export class Grupos {
   temp: FirebaseListObservable<any>;
   uni: FirebaseListObservable<any>;
   grupo: any;
+  sala: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -31,9 +32,9 @@ export class Grupos {
       });
   }
 
-  gotoGroup(g) {
+  gotoGroup(sala) {
   
-    this.navCtrl.push(Inscripcion, {sala: g});
+    this.navCtrl.push(Inscripcion, {sala: sala});
   }
 
 }
