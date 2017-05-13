@@ -15,7 +15,7 @@ export class Inscripcion {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public database: AngularFireDatabase) {
 
-    this.group = navParams.get('group');
+    this.group = navParams.get('sala');
     this.hola = this.database.list('/Temporada/Temporada1/Unimet', {
       query: {
           equalTo: this.group.$key

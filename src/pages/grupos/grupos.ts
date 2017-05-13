@@ -32,7 +32,8 @@ export class Grupos {
   }
 
   gotoGroup(g) {
-    this.navCtrl.push(Inscripcion, {group: this.group});
+  
+    this.navCtrl.push(Inscripcion, {sala: g});
   }
 
 }
