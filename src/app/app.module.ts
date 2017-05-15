@@ -22,6 +22,7 @@ import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {BarcodeScanner} from '@ionic-native/barcode-scanner';
+import { CommonModule } from '@angular/common';
 
 export const firebaseConfig = {
   
@@ -52,7 +53,8 @@ export const firebaseConfig = {
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    CommonModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
