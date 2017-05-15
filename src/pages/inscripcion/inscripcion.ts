@@ -15,9 +15,15 @@ export class Inscripcion {
   private sala_nombre: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, public database: AngularFireDatabase) {
 
+<<<<<<< HEAD
     this.sala = navParams.get('json');
     console.log(this.sala);
     this.sala_nombre = this.sala.Nombre;
+=======
+    this.sala = navParams.get('sala');
+    console.log(this.sala);
+    //this.sala_nombre = this.sala.nombre;
+>>>>>>> origin/master
 
 
   }

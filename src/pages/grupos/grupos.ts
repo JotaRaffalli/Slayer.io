@@ -33,9 +33,15 @@ export class Grupos {
   }
 
   gotoGroup(sala) {
+<<<<<<< HEAD
     var myJSON = JSON.stringify(sala);
     console.log("El stringify: "+myJSON);
     this.navCtrl.push(Inscripcion, {json: sala});
+=======
+  var myJSON = JSON.stringify(sala);
+  console.log(myJSON);
+    //this.navCtrl.push(Inscripcion, {sala: sala});
+>>>>>>> origin/master
   }
 
 }
