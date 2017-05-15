@@ -31,6 +31,8 @@ private pass: string;
       .catch(err => {
        this.presentAlert(); 
    });
+
+   
   }
 
   signOut() {

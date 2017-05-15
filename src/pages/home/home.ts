@@ -22,10 +22,11 @@ export class HomePage {
   private Objetivo_Id: string;
   private Objetivo_Observable: FirebaseObjectObservable<any>;
   private Objetivo: any;
-   private authState: Observable<firebase.User>;
+  private authState: Observable<firebase.User>;
   group: FirebaseListObservable<any>;
   temp: FirebaseListObservable<any>;
   uni: FirebaseListObservable<any>;
+  jugador: FirebaseObjectObservable<any>;
   private currentUser: firebase.User;
   json: any;
 
@@ -38,7 +39,7 @@ export class HomePage {
       this.json = afAuth.auth.currentUser;
       this.authState.subscribe((user: firebase.User) => {
 
-            console.log('user is: ' + user.uid);
+            //console.log('user is: ' + user.uid);
             this.currentUser = user;
         });
       this.plt = platform;
@@ -47,15 +48,39 @@ export class HomePage {
       }
       this.group = this.database.list('/Temporada/Temporada1/Unimet');
       this.temp = this.database.list('/Temporada');
+
+      this.jugador = this.database.object('/Temporada/Temporada1/Unimet/Grupo1/Jugadores/'+this.currentUser.uid);
       this.uni = this.database.list('/Temporada/Temporada1', {
         query: {
           orderByKey: true,
           equalTo: 'Unimet'
         }
       });
+      
   }
 
   // Funciones
+
+  public prueba () {
+
+    this.jugador.subscribe(snapshot => {
+
+      console.log(snapshot.Nombre);
+
+      if (snapshot.$key == this.currentUser.uid)
+      {
+        console.log(snapshot.Objetivo);
+      }
+      else
+      {
+        console.log("Fallo!");
+      }
+
+    });
+
+    
+  }
+
 
   public Asesinar()
   {
