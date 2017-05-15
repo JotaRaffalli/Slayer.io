@@ -6,12 +6,14 @@ import { AngularFireModule } from 'angularfire2';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 
+
 import { Leaderboard } from '../pages/leaderboard/leaderboard';
 import { PatchNotes } from '../pages/patch-notes/patch-notes';
 import { Perfil } from '../pages/perfil/perfil';
 import { Universidad } from '../pages/universidad/universidad';
 import { Inscripcion } from '../pages/inscripcion/inscripcion';
 import { Grupos } from '../pages/grupos/grupos'; 
+import { Login } from '../pages/Login/Login'; 
 
 import { AngularFireAuth } from 'angularfire2/auth';
 
@@ -27,7 +29,7 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, 
-  public af: AngularFireModule) 
+  private afAuth: AngularFireAuth) 
   {
     this.initializeApp();
     
@@ -39,6 +41,17 @@ export class MyApp {
       { title: 'Patch Notes', component: PatchNotes},
       { title: 'ListPage', component: ListPage }
     ];
+
+    const authObserver = afAuth.authState.subscribe(user => {
+
+      if (user) {
+        this.rootPage = HomePage;
+        
+      } else {
+        this.rootPage = Login;
+        
+      }
+    });
 
   }
 

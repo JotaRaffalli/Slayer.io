@@ -13,9 +13,11 @@ import { Perfil } from '../pages/perfil/perfil';
 import { Universidad } from '../pages/universidad/universidad';
 import { Inscripcion } from '../pages/inscripcion/inscripcion';
 import { Grupos } from '../pages/grupos/grupos'; 
+import { Login } from '../pages/Login/Login'; 
 
 import { AuthData } from '../providers/auth-data';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -42,13 +44,15 @@ export const firebaseConfig = {
     PatchNotes,
     Universidad,
     Grupos,
-    Leaderboard
+    Leaderboard,
+    Login
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -60,7 +64,8 @@ export const firebaseConfig = {
     PatchNotes,
     Universidad,
     Grupos,
-    Leaderboard
+    Leaderboard,
+    Login
 
   ],
   providers: [

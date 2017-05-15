@@ -4,6 +4,7 @@ import { AngularFireDatabaseModule, FirebaseListObservable, AngularFireDatabase,
 import { Inscripcion } from '../inscripcion/inscripcion';
 import { Murdered } from '../murdered/murdered';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
+import { AngularFireAuth } from "angularfire2/auth";
 
 @Component({
   selector: 'page-home',
@@ -24,7 +25,7 @@ export class HomePage {
   uni: FirebaseListObservable<any>;
 // Constructor
   constructor(public navCtrl: NavController, public alertController: AlertController, private platform: Platform, 
-  public database: AngularFireDatabase, private barcode: BarcodeScanner) 
+  public database: AngularFireDatabase, private barcode: BarcodeScanner, private afAuth: AngularFireAuth) 
   {
       this.plt = platform;
       this.opcionesDeScan = {
@@ -75,9 +76,13 @@ export class HomePage {
 
             });
         });
-
         
   }
+  private signOut() 
+  {
+    this.afAuth.auth.signOut();
+  }
+
   gotoGroup(g) {
     this.navCtrl.push(Inscripcion, {group: this.group});
   }

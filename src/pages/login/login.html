@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-input type="text" value="" [(ngModel)] = "email">></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Contraseña</ion-label>
+      <ion-input type="password" value=""  [(ngModel)] = "pass"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <div padding>
+    <button ion-button color="primary" block (click)="entrarConCorreo()" >Entrar</button>
+  </div>
+
+  <div padding>
+    <button ion-button color="secondary" block>Entrar con Google</button>
+  </div>
+
+  <button ion-button outline (click)="signOut()">Salir</button>
+</ion-content>
