@@ -14,6 +14,7 @@ export class Grupos {
   temp: FirebaseListObservable<any>;
   uni: FirebaseListObservable<any>;
   grupo: any;
+  sala: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -26,14 +27,15 @@ export class Grupos {
       this.uni = this.database.list('/Temporada/Temporada1', {
         query: {
           orderByKey: true,
-          equalTo: 'Unimet'
+          equalTo: this.grupo.$key,
         }
       });
   }
 
-  gotoGroup(g) {
-  
-    this.navCtrl.push(Inscripcion, {sala: g});
+  gotoGroup(sala) {
+    var myJSON = JSON.stringify(sala);
+    console.log("El stringify: "+myJSON);
+    this.navCtrl.push(Inscripcion, {json: sala});
   }
 
 }
