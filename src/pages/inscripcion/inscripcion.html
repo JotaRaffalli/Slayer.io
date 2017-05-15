@@ -4,11 +4,6 @@
 
         <div>
             <ion-title>{{ sala_nombre }}</ion-title>
-
-            <div *ngFor="let h of hola | async">
-                <ion-title>{{ sala.Nombre }}</ion-title>
-
-            </div>
         </div>
 
     </ion-navbar>
@@ -17,5 +12,8 @@
 
 
 <ion-content padding>
-
+    <div align="center" ng-switch="sala_nombre">
+        <h3 ng-switch-when="Grupo 1"> ¡Ya perteneces a esta sala! </h3>
+        <h3 ng-switch-default> Ya perteneces a una sala, no puedes unirte a más de una </h3>
+    </div>
 </ion-content>

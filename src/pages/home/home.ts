@@ -23,10 +23,14 @@ export class HomePage {
   group: FirebaseListObservable<any>;
   temp: FirebaseListObservable<any>;
   uni: FirebaseListObservable<any>;
+  user: any;
+  json: any;
 // Constructor
   constructor(public navCtrl: NavController, public alertController: AlertController, private platform: Platform, 
   public database: AngularFireDatabase, private barcode: BarcodeScanner, private afAuth: AngularFireAuth) 
   {
+      this.user = afAuth.authState;
+      this.json = afAuth.auth.currentUser;
       this.plt = platform;
       this.opcionesDeScan = {
         prompt:'¡Escanea el codigo QR de tu objetivo!'
