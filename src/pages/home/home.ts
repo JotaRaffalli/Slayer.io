@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { NavController, AlertController, Platform } from 'ionic-angular';
 import { AngularFireDatabaseModule, FirebaseListObservable, AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
 import { Inscripcion } from '../inscripcion/inscripcion';
 import { Murdered } from '../murdered/murdered';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
 import { AngularFireAuth } from "angularfire2/auth";
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'page-home',
@@ -20,17 +22,25 @@ export class HomePage {
   private Objetivo_Id: string;
   private Objetivo_Observable: FirebaseObjectObservable<any>;
   private Objetivo: any;
+   private authState: Observable<firebase.User>;
   group: FirebaseListObservable<any>;
   temp: FirebaseListObservable<any>;
   uni: FirebaseListObservable<any>;
-  user: any;
+  private currentUser: firebase.User;
   json: any;
+
+  
 // Constructor
   constructor(public navCtrl: NavController, public alertController: AlertController, private platform: Platform, 
   public database: AngularFireDatabase, private barcode: BarcodeScanner, private afAuth: AngularFireAuth) 
   {
-      this.user = afAuth.authState;
+      this.authState = afAuth.authState;
       this.json = afAuth.auth.currentUser;
+      this.authState.subscribe((user: firebase.User) => {
+
+            console.log('user is: ' + user.uid);
+            this.currentUser = user;
+        });
       this.plt = platform;
       this.opcionesDeScan = {
         prompt:'¡Escanea el codigo QR de tu objetivo!'

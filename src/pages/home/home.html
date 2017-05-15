@@ -1,8 +1,11 @@
 <ion-header>
     <ion-navbar color="google">
-        <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+        <button ion-button menuToggle>        
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-buttons end>
+            <button ion-button (click)="signOut()">Salir</button>
+        </ion-buttons>
         <div>
             <ion-title>Slayer.io</ion-title>
         </div>
@@ -39,6 +42,6 @@
             </ion-fab>
     </div>
 
-    <button ion-button small outline color="unimet" (click)="signOut()">Salir</button>
+    
 
 </ion-content>

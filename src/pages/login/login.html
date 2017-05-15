@@ -1,6 +1,9 @@
 <ion-header>
     <ion-navbar color="google">
         <ion-title>Login</ion-title>
+         <ion-buttons end>
+            <button ion-button (click)="signOut()">Salir</button>
+        </ion-buttons>
     </ion-navbar>
 </ion-header>
 
@@ -27,9 +30,11 @@
                 <button ion-button color="unimet" block (click)="entrarConCorreo()">Entrar</button>
                 <button ion-button color="google" block>Entrar con Google</button>
             </div>
-
+            <div padding>
+                <p>¿No tienes una cuenta aún? ¡Registrate!</p>
+                <button ion-button outline block>Registrarse</button>
+            </div>
         </ion-list>
     </ion-card>
 
-    <button ion-button color="unimet" small outline (click)="signOut()">Salir</button>
 </ion-content>
