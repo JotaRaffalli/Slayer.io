@@ -1,8 +1,5 @@
 <ion-header>
-    <ion-navbar color="primary">
-        <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+    <ion-navbar color="google">
         <div *ngFor="let u of uni | async">
             <ion-title>{{ u.$key }}</ion-title>
         </div>
@@ -11,8 +8,8 @@
 
 <ion-content padding>
 
-    <div align="center" *ngFor="let t of temp | async">
-        <h4>¡Bienvenido Slayer! Unete a uno de los siguientes grupos de la Temporada 1 </h4>
+    <div align="center" *ngFor="let u of uni | async">
+        ¡Unete a uno de los siguientes grupos de la {{ u.$key }}!
     </div>
     <br>
     <ion-list>
