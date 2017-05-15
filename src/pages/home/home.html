@@ -1,28 +1,28 @@
 <ion-header>
-    <ion-navbar color="primary">
+    <ion-navbar color="google">
         <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-            <ion-title>Juega</ion-title>
+        <div>
+            <ion-title>Slayer.io</ion-title>
+        </div>
     </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-
-
  <!-- ____________________________________Home Principal de Slayer Io____________________________________ -->
 
     <ion-card>
 
         <!-- Aquí se podria poner avatar de la entidad-->
-     
+
         <ion-card-content>
             <ion-card-title>
-                    <h1 align="center" >Información de Juego</h1>
+                <h1 align="center">Información de Juego</h1>
             </ion-card-title>
-            <div  align="center">
+            <div align="center">
                 <h2>Objetivo a asesinar</h2>
-                <h2><strong>Rocco Tarantino</strong></h2>
+                <h2 class="target">Rocco Tarantino</h2>
                 <br>
                 <p>Puntaje: 500</p>
                 <p>Jugadores Restantes: 12</p>
@@ -31,13 +31,15 @@
         </ion-card-content>
     </ion-card>
 
-
-            <ion-fab bottom center>
-                <button ion-fab mini (click)="Asesinar()">
+    <div>
+        <ion-fab bottom center>
+            <button ion-fab color="google" big (click)="Asesinar()">
                     <ion-icon name="locate"></ion-icon>
                 </button>
             </ion-fab>
-       <button ion-button outline (click)="signOut()">Salir</button>
-       <p ng-if="json">{{json.email}}</p>
+    </div>
+
+    <button ion-button small outline color="unimet" (click)="signOut()">Salir</button>
+    <p ng-if="json">{{json.email}}</p>
 
 </ion-content>

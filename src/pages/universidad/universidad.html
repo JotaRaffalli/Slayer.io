@@ -1,14 +1,21 @@
 <ion-header>
-
-    <ion-navbar>
-        <ion-title>Temporada 1</ion-title>
+    <ion-navbar color="google">
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <div>
+            <ion-title>Temporada 1</ion-title>
+        </div>
     </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
 
+    <div align="center">
+        ¡Selecciona la Universidad a la que perteneces para poder jugar!
+    </div>
+    <br>
     <ion-list>
         <button ion-item *ngFor="let u of uni | async" (click)="gotoGroup(u)">
             {{ u.$key }} 

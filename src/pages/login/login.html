@@ -1,32 +1,35 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Login</ion-title>
-  </ion-navbar>
+    <ion-navbar color="google">
+        <ion-title>Login</ion-title>
+    </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
 
-  <ion-list>
+    <ion-card>
 
-    <ion-item>
-      <ion-label>Email</ion-label>
-      <ion-input type="text" value="" [(ngModel)] = "email">></ion-input>
-    </ion-item>
+        <ion-card-header color="target">
+            Inicia sesión en Slayer.io
+        </ion-card-header>
+        <ion-list>
 
-    <ion-item>
-      <ion-label>Contraseña</ion-label>
-      <ion-input type="password" value=""  [(ngModel)] = "pass"></ion-input>
-    </ion-item>
+            <ion-item>
+                <ion-label>Email</ion-label>
+                <ion-input type="text" value="" [(ngModel)]="email">></ion-input>
+            </ion-item>
 
-  </ion-list>
+            <ion-item>
+                <ion-label>Contraseña</ion-label>
+                <ion-input type="password" value="" [(ngModel)]="pass"></ion-input>
+            </ion-item>
 
-  <div padding>
-    <button ion-button color="primary" block (click)="entrarConCorreo()" >Entrar</button>
-  </div>
+            <div padding>
+                <button ion-button color="unimet" block (click)="entrarConCorreo()">Entrar</button>
+                <button ion-button color="google" block>Entrar con Google</button>
+            </div>
 
-  <div padding>
-    <button ion-button color="secondary" block>Entrar con Google</button>
-  </div>
+        </ion-list>
+    </ion-card>
 
-  <button ion-button outline (click)="signOut()">Salir</button>
+    <button ion-button color="unimet" small outline (click)="signOut()">Salir</button>
 </ion-content>

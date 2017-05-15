@@ -35,11 +35,11 @@ export class MyApp {
     
     // used for an example of ngFor and navigation
     this.pages = [
+      { title: 'Inicio', component: HomePage },
       { title: 'Perfil', component: Perfil},
       { title: 'Temporada', component: Universidad },
       { title: 'Leaderboard', component: Leaderboard },
-      { title: 'Patch Notes', component: PatchNotes},
-      { title: 'ListPage', component: ListPage }
+      { title: 'Patch Notes', component: PatchNotes}
     ];
 
     const authObserver = afAuth.authState.subscribe(user => {
