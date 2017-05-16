@@ -38,15 +38,15 @@ export class Murdered {
     this.Usuario_Observable.subscribe(snapshot =>{
       this.Usuario_Snapshot = snapshot;
       this.Jugador_Actual_Observable = this.database.object('Temporada/Temporada1/'+this.Usuario_Snapshot.Universidad+'/'+this.Usuario_Snapshot.GrupoActual+'/Jugadores/'+this.Usuario_Snapshot.$key);
-      this.Jugador_Actual_Observable.subscribe(snapshot =>{
-        this.Jugador_Actual_Snapshot = snapshot;
+      this.Jugador_Actual_Observable.subscribe(snapshot1 =>{
+        this.Jugador_Actual_Snapshot = snapshot1;
         this.Jugador_Muerto_Observable = this.database.object('Temporada/Temporada1/'+this.Usuario_Snapshot.Universidad+'/'+this.Usuario_Snapshot.GrupoActual+'/Jugadores/'+this.Parametros);
-        this.Jugador_Muerto_Observable.subscribe(snapshot =>{
-          this.Jugador_Muerto_Snapshot = snapshot;
+        this.Jugador_Muerto_Observable.subscribe(snapshot2 =>{
+          this.Jugador_Muerto_Snapshot = snapshot2;
           this.Nombre_Jugador_Asesinado = this.Jugador_Muerto_Snapshot.Nombre;
           this.Nuevo_Objetivo_Observable = this.database.object('Temporada/Temporada1/'+this.Usuario_Snapshot.Universidad+'/'+this.Usuario_Snapshot.GrupoActual+'/Jugadores/'+this.Jugador_Muerto_Snapshot.Objetivo);
-          this.Nuevo_Objetivo_Observable.subscribe(snapshot =>{
-            this.Nombre_Nuevo_Objetivo = snapshot.Nombre;
+          this.Nuevo_Objetivo_Observable.subscribe(snapshot3 =>{
+            this.Nombre_Nuevo_Objetivo = snapshot3.Nombre;
           });
           this.Jugador_Actual_Observable.update({
             Objetivo: this.Jugador_Muerto_Snapshot.Objetivo,
