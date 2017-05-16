@@ -32,8 +32,12 @@ export class HomePage {
   dataSnap: any;
   jugadorSnap: any;
   grupo: String;
+  objetivo: string;
+  puntaje: string;
+  objetivolisto: any;
   data: FirebaseObjectObservable<any>;
   jugadorObservable: FirebaseObjectObservable<any>;
+  targetObservable: FirebaseObjectObservable<any>;
 
   
 // Constructor
@@ -56,12 +60,21 @@ export class HomePage {
                     console.log(this.dataSnap.$key);
                     this.jugadorObservable = this.database.object('/Temporada/Temporada1/'+this.dataSnap.Universidad+'/'+this.grupo+'/Jugadores/'+this.dataSnap.$key);
                     //hacemos el snapshot del usuario
-                    this.jugadorObservable.subscribe(snapshot => {
-                        this.jugadorSnap = snapshot;
-                        var myJSON = JSON.stringify(this.jugadorSnap);
-                        console.log(myJSON);
+                    this.jugadorObservable.subscribe(snapshot2 => {
+                        this.jugadorSnap = snapshot2;
+                        console.log(this.jugadorSnap.Puntaje);
+                        this.puntaje = this.jugadorSnap.Puntaje;
                         console.log(this.jugadorSnap.Objetivo);
-                    });          
+
+                        this.targetObservable = this.database.object('/Temporada/Temporada1/'+this.dataSnap.Universidad+'/'+this.grupo+'/Jugadores/'+this.jugadorSnap.Objetivo);
+                        this.targetObservable.subscribe(snapshot3 => {
+                        this.objetivolisto = snapshot3;
+
+                        this.objetivo = this.objetivolisto.Nombre;
+                        });
+                        
+                    }); 
+
              });
         });
       this.plt = platform;
@@ -81,27 +94,6 @@ export class HomePage {
   }
 
   // Funciones
-
-  public prueba () {
-
-    this.jugador.subscribe(snapshot => {
-
-      console.log(snapshot.Nombre);
-
-      if (snapshot.$key == this.currentUser.uid)
-      {
-        console.log(snapshot.Objetivo);
-      }
-      else
-      {
-        console.log("Fallo!");
-      }
-
-    });
-
-    
-  }
-
 
   public Asesinar()
   {

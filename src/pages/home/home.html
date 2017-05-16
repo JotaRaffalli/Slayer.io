@@ -25,9 +25,9 @@
             </ion-card-title>
             <div align="center">
                 <h2>Objetivo a asesinar</h2>
-                <h2 class="target"></h2>
+                <h2 class="target">{{ objetivo }}</h2>
                 <br>
-                <p>Puntaje: 500</p>
+                <p>Puntaje: {{ puntaje }}</p>
                 <p>Jugadores Restantes: 12</p>
                 <p>Ultimo Jugador asesinado: Asher Kleiman</p>
             </div>
@@ -41,11 +41,5 @@
                 </button>
         </ion-fab>
     </div>
-
-    <button ion-button (click)="prueba()">
-        Prueba
-    </button>
-
-
 
 </ion-content>
