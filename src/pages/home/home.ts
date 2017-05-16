@@ -29,6 +29,11 @@ export class HomePage {
   jugador: FirebaseObjectObservable<any>;
   private currentUser: firebase.User;
   json: any;
+  dataSnap: any;
+  jugadorSnap: any;
+  grupo: String;
+  data: FirebaseObjectObservable<any>;
+  jugadorObservable: FirebaseObjectObservable<any>;
 
   
 // Constructor
@@ -38,9 +43,26 @@ export class HomePage {
       this.authState = afAuth.authState;
       this.json = afAuth.auth.currentUser;
       this.authState.subscribe((user: firebase.User) => {
-
             //console.log('user is: ' + user.uid);
             this.currentUser = user;
+
+            this.data = this.database.object('/Usuario/'+user.uid);
+            this.data.subscribe(snapshot => {
+                    //armamos el objeto
+                    this.dataSnap = snapshot;
+                    //agarramos el grupo al que pertenece
+                    this.grupo = this.dataSnap.GrupoActual;
+                    //agarramos al jugador
+                    console.log(this.dataSnap.$key);
+                    this.jugadorObservable = this.database.object('/Temporada/Temporada1/'+this.dataSnap.Universidad+'/'+this.grupo+'/Jugadores/'+this.dataSnap.$key);
+                    //hacemos el snapshot del usuario
+                    this.jugadorObservable.subscribe(snapshot => {
+                        this.jugadorSnap = snapshot;
+                        var myJSON = JSON.stringify(this.jugadorSnap);
+                        console.log(myJSON);
+                        console.log(this.jugadorSnap.Objetivo);
+                    });          
+             });
         });
       this.plt = platform;
       this.opcionesDeScan = {
@@ -48,8 +70,7 @@ export class HomePage {
       }
       this.group = this.database.list('/Temporada/Temporada1/Unimet');
       this.temp = this.database.list('/Temporada');
-
-      this.jugador = this.database.object('/Temporada/Temporada1/Unimet/Grupo1/Jugadores/'+this.currentUser.uid);
+      this.jugador = this.database.object('/Temporada/Temporada1/Unimet/Grupo1/Jugadores/');
       this.uni = this.database.list('/Temporada/Temporada1', {
         query: {
           orderByKey: true,
