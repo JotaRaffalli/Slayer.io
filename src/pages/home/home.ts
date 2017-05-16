@@ -97,7 +97,7 @@ export class HomePage {
 
   public Asesinar()
   {
-    console.log(this.objetivolisto.$key);
+    console.log(this.ObjetivoListoId);
         this.plt.ready().then(() => {
             this.barcode.scan(this.opcionesDeScan).then((resultado) => {
                 if (!resultado.cancelled) 
