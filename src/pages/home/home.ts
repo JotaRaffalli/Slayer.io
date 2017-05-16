@@ -19,9 +19,9 @@ export class HomePage {
   private plt:Platform;
   private opcionesDeScan: BarcodeScannerOptions;
   private Usuario_Id: string;
-  private Objetivo_Id: string;
-  private Objetivo_Observable: FirebaseObjectObservable<any>;
-  private Objetivo: any;
+  private ObjetivoEscaneado_Id: string;
+  private ObjetivoEscaneado_Observable: FirebaseObjectObservable<any>;
+  private ObjetivoEscaneado: any;
   private authState: Observable<firebase.User>;
   group: FirebaseListObservable<any>;
   temp: FirebaseListObservable<any>;
@@ -29,10 +29,9 @@ export class HomePage {
   jugador: FirebaseObjectObservable<any>;
   private currentUser: firebase.User;
   json: any;
-  dataSnap: any;
-  jugadorSnap: any;
+  public dataSnap: any;
+  public jugadorSnap: any;
   grupo: String;
-  objetivo: string;
   puntaje: string;
   objetivolisto: any;
   data: FirebaseObjectObservable<any>;
@@ -69,8 +68,6 @@ export class HomePage {
                         this.targetObservable = this.database.object('/Temporada/Temporada1/'+this.dataSnap.Universidad+'/'+this.grupo+'/Jugadores/'+this.jugadorSnap.Objetivo);
                         this.targetObservable.subscribe(snapshot3 => {
                         this.objetivolisto = snapshot3;
-
-                        this.objetivo = this.objetivolisto.Nombre;
                         });
                         
                     }); 
@@ -97,20 +94,31 @@ export class HomePage {
 
   public Asesinar()
   {
-
         this.plt.ready().then(() => {
             this.barcode.scan(this.opcionesDeScan).then((resultado) => {
                 if (!resultado.cancelled) 
                 {
-                  this.Objetivo_Id = resultado.text; // Buscar con este id
+                  this.ObjetivoEscaneado_Id = resultado.text; // Buscar con este id
 
-                  this.Objetivo_Observable = this.database.object('/User/'+this.Usuario_Id+this.Objetivo_Id);
-                  this.Objetivo_Observable.subscribe(snapshot => {
-                    //armamos el objeto a pasar
-                    this.Objetivo = snapshot;
-                    this.Objetivo.id = this.Objetivo_Id;
-                    this.navCtrl.push( Murdered, {Objetivo_Asesinado: this.Objetivo} ); // Cambiar esto a modals si se puede
-                } );
+                  if (this.ObjetivoEscaneado_Id == this.objetivolisto.$key) 
+                  {  
+                     this.navCtrl.push( Murdered, {Objetivo_Asesinado: this.ObjetivoEscaneado_Id} ); // Cambiar esto a modals si se puede
+                  }
+                  else
+                  {
+                     let VentanaError = this.alertController.create({
+                          title: "Error",
+                          message: " El id del jugador escaneado no coincide con el de tu objetivo ",
+                          buttons: [
+                          {
+                            text: "Ok",
+                            handler: data => {
+                            }
+                          }
+                        ]
+                    });
+                  }
+                   
                                            
                 }
             }, (error) => {
