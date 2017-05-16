@@ -34,6 +34,7 @@ export class HomePage {
   grupo: String;
   puntaje: string;
   objetivolisto: any;
+  ObjetivoListoId: string;
   data: FirebaseObjectObservable<any>;
   jugadorObservable: FirebaseObjectObservable<any>;
   targetObservable: FirebaseObjectObservable<any>;
@@ -68,6 +69,8 @@ export class HomePage {
                         this.targetObservable = this.database.object('/Temporada/Temporada1/'+this.dataSnap.Universidad+'/'+this.grupo+'/Jugadores/'+this.jugadorSnap.Objetivo);
                         this.targetObservable.subscribe(snapshot3 => {
                         this.objetivolisto = snapshot3;
+                        
+                        this.ObjetivoListoId = this.objetivolisto.$key;
                         });
                         
                     }); 
@@ -94,13 +97,14 @@ export class HomePage {
 
   public Asesinar()
   {
+    console.log(this.objetivolisto.$key);
         this.plt.ready().then(() => {
             this.barcode.scan(this.opcionesDeScan).then((resultado) => {
                 if (!resultado.cancelled) 
                 {
                   this.ObjetivoEscaneado_Id = resultado.text; // Buscar con este id
 
-                  if (this.ObjetivoEscaneado_Id == this.objetivolisto.$key) 
+                  if (this.ObjetivoEscaneado_Id == this.ObjetivoListoId) 
                   {  
                      this.navCtrl.push( Murdered, {Objetivo_Asesinado: this.ObjetivoEscaneado_Id} ); // Cambiar esto a modals si se puede
                   }
