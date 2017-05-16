@@ -35,6 +35,7 @@ export class HomePage {
   puntaje: string;
   objetivolisto: any;
   ObjetivoListoId: string;
+  ObjetivoNombre: string;
   data: FirebaseObjectObservable<any>;
   jugadorObservable: FirebaseObjectObservable<any>;
   targetObservable: FirebaseObjectObservable<any>;
@@ -69,7 +70,7 @@ export class HomePage {
                         this.targetObservable = this.database.object('/Temporada/Temporada1/'+this.dataSnap.Universidad+'/'+this.grupo+'/Jugadores/'+this.jugadorSnap.Objetivo);
                         this.targetObservable.subscribe(snapshot3 => {
                         this.objetivolisto = snapshot3;
-                        
+                        this.ObjetivoNombre = this.objetivolisto.Nombre;
                         this.ObjetivoListoId = this.objetivolisto.$key;
                         });
                         
