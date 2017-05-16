@@ -59,7 +59,7 @@ export class HomePage {
                     //agarramos al jugador
                     console.log(this.dataSnap.$key);
                     this.jugadorObservable = this.database.object('/Temporada/Temporada1/'+this.dataSnap.Universidad+'/'+this.grupo+'/Jugadores/'+this.dataSnap.$key);
-                    //hacemos el snapshot del usuario
+                    //hacemos el snapshot del jugador
                     this.jugadorObservable.subscribe(snapshot2 => {
                         this.jugadorSnap = snapshot2;
                         console.log(this.jugadorSnap.Puntaje);
@@ -97,33 +97,47 @@ export class HomePage {
 
   public Asesinar()
   {
-    console.log(this.ObjetivoListoId);
+
         this.plt.ready().then(() => {
             this.barcode.scan(this.opcionesDeScan).then((resultado) => {
                 if (!resultado.cancelled) 
                 {
                   this.ObjetivoEscaneado_Id = resultado.text; // Buscar con este id
-
-                  if (this.ObjetivoEscaneado_Id == this.ObjetivoListoId) 
-                  {  
-                     this.navCtrl.push( Murdered, {Objetivo_Asesinado: this.ObjetivoEscaneado_Id} ); // Cambiar esto a modals si se puede
-                  }
-                  else
-                  {
-                     let VentanaError = this.alertController.create({
-                          title: "Error",
-                          message: " El id del jugador escaneado no coincide con el de tu objetivo ",
-                          buttons: [
-                          {
-                            text: "Ok",
-                            handler: data => {
+                  this.authState.subscribe((user: firebase.User) => {
+                      //console.log('user is: ' + user.uid);
+                      this.currentUser = user;
+                      this.data = this.database.object('/Usuario/'+user.uid);
+                      this.data.subscribe(snapshot => {
+                        //armamos el objeto
+                        this.dataSnap = snapshot;
+                        //agarramos el grupo al que pertenece
+                        this.grupo = this.dataSnap.GrupoActual;
+                        //agarramos al jugador
+                        this.jugadorObservable = this.database.object('/Temporada/Temporada1/'+this.dataSnap.Universidad+'/'+this.grupo+'/Jugadores/'+this.dataSnap.$key);
+                        //hacemos el snapshot del jugador
+                        this.jugadorObservable.subscribe(snapshot2 => {
+                        this.jugadorSnap = snapshot2;
+                        if (this.ObjetivoEscaneado_Id == snapshot2.Objetivo) 
+                        {  
+                          this.navCtrl.push( Murdered, {Objetivo_Asesinado: this.ObjetivoEscaneado_Id} ); // Cambiar esto a modals si se puede
+                        }
+                        else
+                        {
+                          let VentanaError = this.alertController.create({
+                            title: "Error",
+                            message: " El id del jugador escaneado no coincide con el de tu objetivo ",
+                            buttons: [
+                            {
+                              text: "Ok",
+                              handler: data => {
+                              }
                             }
-                          }
-                        ]
-                    });
-                  }
-                   
-                                           
+                            ]
+                          });
+                        }
+                        });  
+                      });
+                  });                                      
                 }
             }, (error) => {
                   let VentanaError = this.alertController.create({
