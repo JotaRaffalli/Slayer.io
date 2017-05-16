@@ -39,7 +39,7 @@ export class Inscripcion {
                     //agarramos el grupo al que pertenece
                     this.grupo = this.dataSnap.GrupoActual;
                     //agarramos al jugador
-                    this.jugadorObservable = this.database.object('/Temporada/Temporada1/'+this.dataSnap.Universidad+'/'+this.grupo+'/'+this.dataSnap.$key);
+                    this.jugadorObservable = this.database.object('/Temporada/Temporada1/'+this.dataSnap.Universidad+'/'+this.grupo+'/'+'/Jugadores/'+this.dataSnap.$key);
                     //hacemos el snapshot del usuario
                     this.jugadorObservable.subscribe(snapshot => {
                         this.jugadorSnap = snapshot;
