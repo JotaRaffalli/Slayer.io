@@ -51,8 +51,10 @@ export class HomePage {
             //console.log('user is: ' + user.uid);
             this.currentUser = user;
 
-            this.data = this.database.object('/Usuario/'+user.uid);
-            this.data.subscribe(snapshot => {
+            if  (user) 
+            { 
+              this.data = this.database.object('/Usuario/'+user.uid);
+                          this.data.subscribe(snapshot => {
                     //armamos el objeto
                     this.dataSnap = snapshot;
                     //agarramos el grupo al que pertenece
@@ -76,7 +78,8 @@ export class HomePage {
                         
                     }); 
 
-             });
+             }); 
+            }
         });
       this.plt = platform;
       this.opcionesDeScan = {
@@ -134,8 +137,8 @@ export class HomePage {
                         this.jugadorSnap = snapshot2;
                         // if (this.ObjetivoEscaneado_Id == snapshot2.Objetivo) 
                         // {  
-                          this.navCtrl.push( Murdered, {Objetivo_Asesinado: this.ObjetivoEscaneado_Id} ); // Cambiar esto a modals si se puede
-                        // }
+                          this.navCtrl.push( Murdered ); // Cambiar esto a modals si se puede
+                        // }  {Objetivo_Asesinado: this.ObjetivoEscaneado_Id} 
                         // else
                         // {
                         //   let VentanaError = this.alertController.create({
