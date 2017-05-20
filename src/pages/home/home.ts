@@ -115,7 +115,7 @@ export class HomePage {
                       });
         this.plt.ready().then(() => {
             this.barcode.scan(this.opcionesDeScan).then((resultado) => {
-                if (!resultado.cancelled)
+                if (!resultado.cancelled) 
                 {
                   this.ObjetivoEscaneado_Id = resultado.text; // Buscar con este id
                   this.authState.subscribe((user: firebase.User) => {

@@ -48,22 +48,21 @@ export class Murdered {
           this.Nuevo_Objetivo_Observable.subscribe(snapshot3 =>{
             this.Nombre_Nuevo_Objetivo = snapshot3.Nombre;
           });
-          //AQUI ESTABAN ANTES LOS UPDATES Y SETS
+          this.Jugador_Actual_Observable.update({
+            Objetivo: this.Jugador_Muerto_Snapshot.Objetivo,
+            Puntaje: (this.Jugador_Actual_Snapshot.Puntaje + 500)
+          });
+          this.Jugador_Muerto_Observable.set({
+            Muerto: true,
+          });
+          this.Jugador_Muerto_Observable.update({
+            Objetivo: 'no',
+          })
           
         });
          
       });
     });
-    this.Jugador_Actual_Observable.update({
-            Objetivo: this.Jugador_Muerto_Snapshot.Objetivo,
-            Puntaje: (this.Jugador_Actual_Snapshot.Puntaje + 500)
-    });
-    this.Jugador_Muerto_Observable.set({
-            Muerto: true,
-    });
-    this.Jugador_Muerto_Observable.update({
-            Objetivo: 'no',
-    })
     
     
       
