@@ -4,7 +4,7 @@ import { NavController, AlertController, Platform } from 'ionic-angular';
 import { AngularFireDatabaseModule, FirebaseListObservable, AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
 import { Inscripcion } from '../inscripcion/inscripcion';
 import { Murdered } from '../murdered/murdered';
-import { LeaderboardModal } from '../sample-modal/sample-modal';
+import { LeaderboardModal } from '../leaderboard-modal/leaderboard-modal';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
 import { AngularFireAuth } from "angularfire2/auth";
 import * as firebase from 'firebase/app';

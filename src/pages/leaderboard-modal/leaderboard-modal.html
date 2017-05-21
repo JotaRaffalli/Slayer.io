@@ -9,10 +9,10 @@
 
 <ion-content padding>
     <ul>
-        <li *ngIf="Current_User.uid == j.uid || j.muerto; else elseBlock">{{j.Nombre} {j.Puntaje}}
-            <ng-template #elseBlock>...</ng-template>>
-        </li>
-        </li>
+        <div *ngFor="let j of Jugadores_Observable | async" >
+        <li *ngIf="Current_User.uid == j.uid || j.muerto; else elseBlock">{{j.Nombre}} {{j.Puntaje}}</li>
+        <ng-template #elseBlock><li> Anónimo {{j.Puntaje}}</li></ng-template>
+        </div>
     </ul>
 
 </ion-content>
