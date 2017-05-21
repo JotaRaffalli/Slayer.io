@@ -15,6 +15,7 @@ import { Inscripcion } from '../pages/inscripcion/inscripcion';
 import { Grupos } from '../pages/grupos/grupos'; 
 import { Login } from '../pages/Login/Login';
 import { Murdered } from '../pages/murdered/murdered';
+import { LeaderboardModal } from '../pages/leaderboard-modal/leaderboard-modal';
 
 import { AuthData } from '../providers/auth-data';
 import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
@@ -48,7 +49,8 @@ export const firebaseConfig = {
     Grupos,
     Leaderboard,
     Login,
-    Murdered
+    Murdered,
+    LeaderboardModal
   ],
   imports: [
     BrowserModule,
@@ -70,7 +72,8 @@ export const firebaseConfig = {
     Grupos,
     Leaderboard,
     Login,
-    Murdered
+    Murdered,
+    LeaderboardModal
 
   ],
   providers: [
