@@ -11,11 +11,11 @@
 <ion-content padding>
     <div *ngIf="grupo!=no;else other">
         <div align="center" [ngSwitch]="sala_nombre">
-        <h3 *ngSwitchCase="grupo"> ¡Ya perteneces a esta sala! </h3>
-        <h3 *ngSwitchDefault> Ya perteneces a una sala, no puedes unirte a más de una </h3>
+            <h3 *ngSwitchCase="grupo"> ¡Ya perteneces a esta sala! </h3>
+            <h3 *ngSwitchDefault> Ya perteneces a una sala, no puedes unirte a más de una </h3>
+        </div>
     </div>
-    </div>
-    <ng-template #other> 
+    <ng-template #other>
         <!-- Aquí iría para unirse a la sala -->
     </ng-template>
 </ion-content>
