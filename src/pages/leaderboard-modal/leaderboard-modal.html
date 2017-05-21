@@ -11,12 +11,16 @@
 
 
 <ion-content padding>
-    <div *ngFor="let j of Jugadores_Observable | async">
-        <ion-item-divider>
-            <ion-item style="background-color: #dddddd" *ngIf="Current_User.uid == j.$key || j.muerto; else elseBlock">{{j.Nombre}} {{j.Puntaje}}</ion-item>
+<ion-content padding>
+    <div class="row header" style="width:100%">
+            <div class="col" align="center" style="background-color:#F38619"><strong>Nombre</strong></div>
+            <div class="col" align="center" style="background-color:#F38619"><strong>Puntaje</strong></div>
+    </div>
+    <div class="row" *ngFor="let j of Jugadores_Observable | async" style="width:100%">
+            <div class="col"*ngIf="Current_User.uid == j.$key || j.muerto; else elseBlock" style="background-color:#fdfdfd">{{j.Nombre}}</div>
             <ng-template #elseBlock>
-                <ion-item style="background-color: #dddddd"> Anónimo {{j.Puntaje}}</ion-item>
+                <div class="col" style="background-color:#fdfdfd">Anónimo</div>
             </ng-template>
-        </ion-item-divider>
+            <div class="col" align="center" style="background-color:#fdfdfd">{{j.Puntaje}}</div>
     </div>
 </ion-content>
