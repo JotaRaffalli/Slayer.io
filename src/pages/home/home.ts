@@ -4,9 +4,11 @@ import { NavController, AlertController, Platform } from 'ionic-angular';
 import { AngularFireDatabaseModule, FirebaseListObservable, AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
 import { Inscripcion } from '../inscripcion/inscripcion';
 import { Murdered } from '../murdered/murdered';
+import { LeaderboardModal } from '../sample-modal/sample-modal';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
 import { AngularFireAuth } from "angularfire2/auth";
 import * as firebase from 'firebase/app';
+import { ModalController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -42,7 +44,7 @@ export class HomePage {
 
   
 // Constructor
-  constructor(public navCtrl: NavController, public alertController: AlertController, private platform: Platform, 
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public alertController: AlertController, private platform: Platform, 
   public database: AngularFireDatabase, private barcode: BarcodeScanner, private afAuth: AngularFireAuth) 
   {
       this.authState = afAuth.authState;
@@ -98,7 +100,6 @@ export class HomePage {
   }
 
   // Funciones
-
   public Asesinar()
   {
         console.log("entre en la funcion");
@@ -181,6 +182,11 @@ export class HomePage {
 
   gotoGroup(g) {
     this.navCtrl.push(Inscripcion, {group: this.group});
+  }
+
+  GoToLeaderboard() {
+    let myModal = this.modalCtrl.create(LeaderboardModal);
+    myModal.present();
   }
 
 }
