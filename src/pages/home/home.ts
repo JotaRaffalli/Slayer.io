@@ -40,6 +40,7 @@ export class HomePage {
   objetivolisto: any;
   ObjetivoListoId: string;
   ObjetivoNombre: string;
+  jugadorNombre: string;
   data: FirebaseObjectObservable<any>;
   jugadorObservable: FirebaseObjectObservable<any>;
   targetObservable: FirebaseObjectObservable<any>;
@@ -69,6 +70,7 @@ export class HomePage {
                     //hacemos el snapshot del jugador
                     this.jugadorObservable.subscribe(snapshot2 => {
                         this.jugadorSnap = snapshot2;
+                        this.jugadorNombre = this.jugadorSnap.Nombre; 
                         console.log(this.jugadorSnap.Puntaje);
                         this.puntaje = this.jugadorSnap.Puntaje;
                         console.log(this.jugadorSnap.Objetivo);

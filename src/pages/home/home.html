@@ -16,52 +16,57 @@
     <!-- ____________________________________Home Principal de Slayer Io____________________________________ -->
 
 
-  <!-- info del jugador-->
+    <!-- info del jugador-->
     <ion-card>
-      
-        <ion-card-content >
+
+        <ion-card-content>
             <ion-card-title align="center">
-                <h1> ¡Bienvenido <strong>Ricardo</strong>!</h1>
-                <p>Level: 15 </p> 
+                <h2> ¡Bienvenido <strong>{{ jugadorNombre }}</strong>!</h2>
+                <p>Level: 15 </p>
             </ion-card-title>
             <div align="center">
-                
-                <div style="padding-bottom:5px;" >
+
+                <div style="padding-bottom:5px;">
                     <p>Título: "Your dream is to advance, we dream in your progress" </p>
-                    <p>Emblema: <ion-icon name="beer"></ion-icon></p> 
+                    <p>Emblema:
+                        <ion-icon name="beer"></ion-icon>
+                    </p>
                 </div>
-                <div style="width:35%;">Próximo Nivel: 16  <progress-bar [progress]="loadProgress"></progress-bar></div>
-               
+                <div style="width:35%;">Próximo Nivel: 16
+                    <progress-bar [progress]="loadProgress"></progress-bar>
+                </div>
+
             </div>
         </ion-card-content>
-       
+
     </ion-card>
 
     <!-- objetivo y juego-->
-    
+
     <ion-card>
         <!-- Aquí se podria poner avatar de la entidad-->
-        <ion-card-content >
+        <ion-card-content>
             <ion-card-title>
                 <h1 align="center">Objetivo a asesinar</h1>
             </ion-card-title>
             <div align="center">
                 <strong>{{ObjetivoNombre}}</strong>
-                <p>Nivel:   ObjetivoNivel </p>
-                <p>Puntaje de partida:  {{ puntaje }}</p>
+                <p>Nivel: ObjetivoNivel </p>
+                <p>Puntaje de partida: {{ puntaje }}</p>
             </div>
 
             <div style="padding-top: 3px" align="center">
-                <p><strong>Información de partida</strong><p>
+                <p><strong>Información de partida</strong>
+                    <p>
             </div>
 
-            <ion-fab center >
+            <ion-fab center>
                 <button ion-fab color="primary" (click)="GoToLeaderboard()">                    
                     <ion-icon name="information-circle"></ion-icon>
                 </button>
             </ion-fab>
         </ion-card-content>
-       
+
     </ion-card>
 
     <div>
