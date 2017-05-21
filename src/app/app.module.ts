@@ -13,7 +13,8 @@ import { Perfil } from '../pages/perfil/perfil';
 import { Universidad } from '../pages/universidad/universidad';
 import { Inscripcion } from '../pages/inscripcion/inscripcion';
 import { Grupos } from '../pages/grupos/grupos'; 
-import { Login } from '../pages/Login/Login'; 
+import { Login } from '../pages/Login/Login';
+import { Murdered } from '../pages/murdered/murdered';
 
 import { AuthData } from '../providers/auth-data';
 import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
@@ -46,7 +47,8 @@ export const firebaseConfig = {
     Universidad,
     Grupos,
     Leaderboard,
-    Login
+    Login,
+    Murdered
   ],
   imports: [
     BrowserModule,
@@ -67,7 +69,8 @@ export const firebaseConfig = {
     Universidad,
     Grupos,
     Leaderboard,
-    Login
+    Login,
+    Murdered
 
   ],
   providers: [
