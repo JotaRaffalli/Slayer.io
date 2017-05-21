@@ -27,13 +27,13 @@
             <div align="center">
 
                 <div style="padding-bottom:5px;">
-                    <p>Título: "Your dream is to advance, we dream in your progress" </p>
+                    <p>Título: "{{ frase }}" </p>
                     <p>Emblema:
-                        <ion-icon name="beer"></ion-icon>
+                        <ion-icon name="{{ emblema }}"></ion-icon>
                     </p>
                 </div>
-                <div style="width:35%;">Próximo Nivel: 16
-                    <progress-bar [progress]="loadProgress"></progress-bar>
+                <div style="width:45%;">Próximo Nivel: 16
+                    <progress-bar [progress]="loadProgress">hola</progress-bar>
                 </div>
 
             </div>

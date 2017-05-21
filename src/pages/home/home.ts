@@ -41,6 +41,8 @@ export class HomePage {
   ObjetivoListoId: string;
   ObjetivoNombre: string;
   jugadorNombre: string;
+  frase: string;
+  emblema: string;
   data: FirebaseObjectObservable<any>;
   jugadorObservable: FirebaseObjectObservable<any>;
   targetObservable: FirebaseObjectObservable<any>;
@@ -62,6 +64,8 @@ export class HomePage {
                           this.data.subscribe(snapshot => {
                     //armamos el objeto
                     this.dataSnap = snapshot;
+                    this.frase = this.dataSnap.Frase;
+                    this.emblema = this.dataSnap.Emblema;
                     //agarramos el grupo al que pertenece
                     this.grupo = this.dataSnap.GrupoActual;
                     //agarramos al jugador
