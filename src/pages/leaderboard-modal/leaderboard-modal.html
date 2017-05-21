@@ -13,7 +13,7 @@
 <ion-content padding>
     <ul>
         <div *ngFor="let j of Jugadores_Observable | async" >
-        <li *ngIf="Current_User.uid == j.uid || j.muerto; else elseBlock">{{j.Nombre}} {{j.Puntaje}}</li>
+        <li *ngIf="Current_User.uid == j.$key || j.muerto; else elseBlock">{{j.Nombre}} {{j.Puntaje}}</li>
         <ng-template #elseBlock><li> Anónimo {{j.Puntaje}}</li></ng-template>
         </div>
     </ul>
