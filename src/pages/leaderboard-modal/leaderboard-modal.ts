@@ -53,7 +53,7 @@ export class LeaderboardModal {
   }
 
   //funciones
-  closeModal(){
+  CloseModal(){
     this.viewCtrl.dismiss();
   }
 
