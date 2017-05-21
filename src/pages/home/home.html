@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-navbar color="google">
+    <ion-navbar color="danger">
         <button ion-button menuToggle>        
             <ion-icon name="menu"></ion-icon>
         </button>
@@ -15,28 +15,58 @@
 <ion-content padding>
     <!-- ____________________________________Home Principal de Slayer Io____________________________________ -->
 
+
+  <!-- info del jugador-->
     <ion-card>
-
-        <!-- Aquí se podria poner avatar de la entidad-->
-
-        <ion-card-content>
-            <ion-card-title>
-                <h1 align="center">Información de Juego</h1>
+      
+        <ion-card-content >
+            <ion-card-title align="center">
+                <h1> ¡Bienvenido <strong>Ricardo</strong>!</h1>
+                <p>Level: 15 </p> 
             </ion-card-title>
             <div align="center">
-                <h2>Objetivo a asesinar</h2>
-                <strong>{{ObjetivoNombre}}</strong>
-                <br>
-                <p>Puntaje: {{ puntaje }}</p>
-                <p>Jugadores Restantes: 12</p>
-                <p>Ultimo Jugador asesinado: Asher Kleiman</p>
+                
+                <div style="padding-bottom:5px;" >
+                    <p>Título: "Your dream is to advance, we dream in your progress" </p>
+                    <p>Emblema: <ion-icon name="beer"></ion-icon></p> 
+                </div>
+                <div style="width:35%;">Próximo Nivel: 16  <progress-bar [progress]="loadProgress"></progress-bar></div>
+               
             </div>
         </ion-card-content>
+       
+    </ion-card>
+
+    <!-- objetivo y juego-->
+    
+    <ion-card>
+        <!-- Aquí se podria poner avatar de la entidad-->
+        <ion-card-content >
+            <ion-card-title>
+                <h1 align="center">Objetivo a asesinar</h1>
+            </ion-card-title>
+            <div align="center">
+                <strong>{{ObjetivoNombre}}</strong>
+                <p>Nivel:   ObjetivoNivel </p>
+                <p>Puntaje de partida:  {{ puntaje }}</p>
+            </div>
+
+            <div style="padding-top: 3px" align="center">
+                <p><strong>Información de partida</strong><p>
+            </div>
+
+            <ion-fab center >
+                <button ion-fab color="secondary">                    
+                    <ion-icon name="information-circle"></ion-icon>
+                </button>
+            </ion-fab>
+        </ion-card-content>
+       
     </ion-card>
 
     <div>
         <ion-fab bottom center>
-            <button ion-fab color="google" big (click)="Asesinar()">
+            <button ion-fab color="danger" big (click)="Asesinar()">
                     <ion-icon name="locate"></ion-icon>
                 </button>
         </ion-fab>

@@ -1,40 +1,41 @@
 <ion-header>
-    <ion-navbar color="google">
-        <ion-title>Login</ion-title>
+    <ion-navbar color="danger">
+        <ion-toolbar>
+            <ion-title>Slayer.io</ion-title>
+        </ion-toolbar>
          <ion-buttons end>
-            <button ion-button (click)="signOut()">Salir</button>
+            <button ion-button (click)="EntrarComoAnonimo()"><ion-icon style="padding-right: 5px " name="glasses"></ion-icon>Entrar anónimo </button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
-    <ion-card>
+    <ion-card padding > 
 
-        <ion-card-header color="target">
-            Inicia sesión en Slayer.io
+        <ion-card-header align="center" >
+            <ion-card-title color="target"> Inicia sesión</ion-card-title>
         </ion-card-header>
-        <ion-list>
+        <ion-list style="padding-bottom:70px"  style="padding-bottom:70px">
 
-            <ion-item>
-                <ion-label>Email</ion-label>
-                <ion-input type="text" value="" [(ngModel)]="email">></ion-input>
+            <ion-item>               
+                <ion-input type="text" placeholder="Email" [(ngModel)]="email">></ion-input>
             </ion-item>
 
             <ion-item>
-                <ion-label>Contraseña</ion-label>
-                <ion-input type="password" value="" [(ngModel)]="pass"></ion-input>
+                <ion-input  type="password" placeholder="Contraseña" [(ngModel)]="pass"></ion-input>
             </ion-item>
 
+        </ion-list>
             <div padding>
-                <button ion-button color="unimet" block (click)="entrarConCorreo()">Entrar</button>
-                <button ion-button color="google" block>Entrar con Google</button>
+                <button ion-button color="primary" block (click)="entrarConCorreo()">Entrar a Slayer.io <ion-icon padding-left="1em" name="log-in"></ion-icon></button>
+                <button ion-button color="danger" block>Entrar con Google<ion-icon padding-left="1px" name="logo-google"></ion-icon></button>
             </div>
             <div padding>
-                <p>¿No tienes una cuenta aún? ¡Registrate!</p>
+                <p align="center">¿No tienes una cuenta aún? ¡Registrate!</p>
                 <button ion-button outline block>Registrarse</button>
             </div>
-        </ion-list>
+        
     </ion-card>
 
 </ion-content>

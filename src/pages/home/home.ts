@@ -4,6 +4,7 @@ import { NavController, AlertController, Platform } from 'ionic-angular';
 import { AngularFireDatabaseModule, FirebaseListObservable, AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
 import { Inscripcion } from '../inscripcion/inscripcion';
 import { Murdered } from '../murdered/murdered';
+import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
 import { AngularFireAuth } from "angularfire2/auth";
 import * as firebase from 'firebase/app';
@@ -23,6 +24,7 @@ export class HomePage {
   private ObjetivoEscaneado_Observable: FirebaseObjectObservable<any>;
   private ObjetivoEscaneado: any;
   private authState: Observable<firebase.User>;
+  private ProgressBarComponent;
   group: FirebaseListObservable<any>;
   temp: FirebaseListObservable<any>;
   uni: FirebaseListObservable<any>;
@@ -43,7 +45,7 @@ export class HomePage {
   
 // Constructor
   constructor(public navCtrl: NavController, public alertController: AlertController, private platform: Platform, 
-  public database: AngularFireDatabase, private barcode: BarcodeScanner, private afAuth: AngularFireAuth) 
+  public database: AngularFireDatabase, private barcode: BarcodeScanner, private afAuth: AngularFireAuth ) 
   {
       this.authState = afAuth.authState;
       this.json = afAuth.auth.currentUser;

@@ -17,8 +17,8 @@ import * as firebase from 'firebase/app';
 })
 export class Login {
 
-private email: string;
-private pass: string;
+ email: string;
+ pass: string;
 
   constructor(private alertCtrl: AlertController, public navCtrl: NavController,
    public navParams: NavParams, private afAuth: AngularFireAuth) {

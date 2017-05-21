@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -50,7 +51,8 @@ export const firebaseConfig = {
     Leaderboard,
     Login,
     Murdered,
-    LeaderboardModal
+    LeaderboardModal,
+    ProgressBarComponent
   ],
   imports: [
     BrowserModule,
