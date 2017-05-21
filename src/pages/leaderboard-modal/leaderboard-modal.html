@@ -1,21 +1,22 @@
 <ion-header>
 
-    <ion-navbar>
+    <ion-navbar color="google">
         <ion-buttons start>
             <button ion-button (click)="CloseModal()">Cerrar</button>
         </ion-buttons>
-        <ion-title>Leaderboard_Modal</ion-title>
+        <ion-title>LeaderBoard</ion-title>
     </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-    <ul>
-        <div *ngFor="let j of Jugadores_Observable | async" >
-        <li *ngIf="Current_User.uid == j.$key || j.muerto; else elseBlock">{{j.Nombre}} {{j.Puntaje}}</li>
-        <ng-template #elseBlock><li> Anónimo {{j.Puntaje}}</li></ng-template>
-        </div>
-    </ul>
-
+    <div *ngFor="let j of Jugadores_Observable | async">
+        <ion-item-divider>
+            <ion-item style="background-color: #dddddd" *ngIf="Current_User.uid == j.$key || j.muerto; else elseBlock">{{j.Nombre}} {{j.Puntaje}}</ion-item>
+            <ng-template #elseBlock>
+                <ion-item style="background-color: #dddddd"> Anónimo {{j.Puntaje}}</ion-item>
+            </ng-template>
+        </ion-item-divider>
+    </div>
 </ion-content>
