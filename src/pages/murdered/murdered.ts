@@ -21,49 +21,56 @@ export class Murdered {
   private authState: Observable<firebase.User>;
   Jugador_Actual_Observable: FirebaseObjectObservable<any>;
   Jugador_Actual_Snapshot: any;
-  Usuario_Observable: FirebaseObjectObservable<any>;
+  private Usuario_Observable: FirebaseObjectObservable<any>;
   Usuario_Snapshot: any;
   Jugador_Muerto_Observable: FirebaseObjectObservable<any>;
   Jugador_Muerto_Snapshot: any;
-  Nombre_Jugador_Asesinado: any;
+  Nombre_Jugador_Asesinado: string;
   Nuevo_Objetivo_Observable: FirebaseObjectObservable<any>;
-  Nombre_Nuevo_Objetivo: any; 
+  Nombre_Nuevo_Objetivo: string;
+
+  prueba1: any;
+  prueba: any;
+  prueba2: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private afAuth: AngularFireAuth, public database: AngularFireDatabase) {
   this.Parametros = navParams.get('Objetivo_Asesinado');
   this.authState = afAuth.authState;
   this.authState.subscribe((user: firebase.User) => {
 
+    
     this.Usuario_Observable = this.database.object('Usuario/'+user.uid);
-    this.Usuario_Observable.subscribe(snapshot =>{
+    this.Usuario_Observable.subscribe(snapshot => {
       this.Usuario_Snapshot = snapshot;
+
       this.Jugador_Actual_Observable = this.database.object('Temporada/Temporada1/'+this.Usuario_Snapshot.Universidad+'/'+this.Usuario_Snapshot.GrupoActual+'/Jugadores/'+this.Usuario_Snapshot.$key);
-      this.Jugador_Actual_Observable.subscribe(snapshot1 =>{
+      this.Jugador_Actual_Observable.subscribe(snapshot1 => { //NO ENTRA AQUI
+
+        
+
         this.Jugador_Actual_Snapshot = snapshot1;
         this.Jugador_Muerto_Observable = this.database.object('Temporada/Temporada1/'+this.Usuario_Snapshot.Universidad+'/'+this.Usuario_Snapshot.GrupoActual+'/Jugadores/'+this.Parametros);
-        this.Jugador_Muerto_Observable.subscribe(snapshot2 =>{
+        this.Jugador_Muerto_Observable.subscribe(snapshot2 => {
           this.Jugador_Muerto_Snapshot = snapshot2;
           this.Nombre_Jugador_Asesinado = this.Jugador_Muerto_Snapshot.Nombre;
           this.Nuevo_Objetivo_Observable = this.database.object('Temporada/Temporada1/'+this.Usuario_Snapshot.Universidad+'/'+this.Usuario_Snapshot.GrupoActual+'/Jugadores/'+this.Jugador_Muerto_Snapshot.Objetivo);
-          this.Nuevo_Objetivo_Observable.subscribe(snapshot3 =>{
+          this.Nuevo_Objetivo_Observable.subscribe(snapshot3 => {
             this.Nombre_Nuevo_Objetivo = snapshot3.Nombre;
+            var puntaje = this.Jugador_Actual_Snapshot.Puntaje + 500;
+            this.Jugador_Actual_Observable.update({
+              Objetivo: this.Jugador_Muerto_Snapshot.Objetivo,
+              Puntaje: puntaje
+            });
+            this.Jugador_Muerto_Observable.update({
+              Objetivo: 'no',
+            });
           });
-          this.Jugador_Actual_Observable.update({
-            Objetivo: this.Jugador_Muerto_Snapshot.Objetivo,
-            Puntaje: (this.Jugador_Actual_Snapshot.Puntaje + 500)
-          });
-          this.Jugador_Muerto_Observable.set({
-            Muerto: true,
-          });
-          this.Jugador_Muerto_Observable.update({
-            Objetivo: 'no',
-          })
+          
           
         });
          
       });
     });
-    
     
       
   });

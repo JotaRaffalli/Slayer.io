@@ -111,20 +111,6 @@ export class HomePage {
   public Asesinar()
   {
         console.log("entre en la funcion");
-        this.data.subscribe(snapshot => {
-                        //armamos el objeto
-                        this.dataSnap = snapshot;
-                        //agarramos el grupo al que pertenece
-                        this.grupo = this.dataSnap.GrupoActual;
-                        //agarramos al jugador
-                        this.jugadorObservable = this.database.object('/Temporada/Temporada1/'+this.dataSnap.Universidad+'/'+this.grupo+'/Jugadores/'+this.dataSnap.$key);
-                        //hacemos el snapshot del jugador
-                        this.jugadorObservable.subscribe(snapshot2 => {
-                        this.jugadorSnap = snapshot2;
-                        console.log("Hare console log:");
-                        console.log(snapshot2.Objetivo);
-                      });
-                      });
         this.plt.ready().then(() => {
             this.barcode.scan(this.opcionesDeScan).then((resultado) => {
                 if (!resultado.cancelled) 
@@ -144,24 +130,24 @@ export class HomePage {
                         //hacemos el snapshot del jugador
                         this.jugadorObservable.subscribe(snapshot2 => {
                         this.jugadorSnap = snapshot2;
-                        // if (this.ObjetivoEscaneado_Id == snapshot2.Objetivo) 
-                        // {  
-                          this.navCtrl.push( Murdered ); // Cambiar esto a modals si se puede
-                        // }  {Objetivo_Asesinado: this.ObjetivoEscaneado_Id} 
-                        // else
-                        // {
-                        //   let VentanaError = this.alertController.create({
-                        //     title: "Error",
-                        //     message: " El id del jugador escaneado no coincide con el de tu objetivo ",
-                        //     buttons: [
-                        //     {
-                        //       text: "Ok",
-                        //       handler: data => {
-                        //       }
-                        //     }
-                        //     ]
-                        //   });
-                        // }
+                        if (this.ObjetivoEscaneado_Id == snapshot2.Objetivo) 
+                         {  
+                          this.navCtrl.push(Murdered, {Objetivo_Asesinado: this.ObjetivoEscaneado_Id}); // Cambiar esto a modals si se puede
+                         }   
+                         else
+                         {
+                           let VentanaError = this.alertController.create({
+                             title: "Error",
+                             message: " El id del jugador escaneado no coincide con el de tu objetivo ",
+                              buttons: [
+                             {
+                               text: "Ok",
+                               handler: data => {
+                               }
+                             }
+                             ]
+                           });
+                         }
                         });  
                       });
                   });                                      
