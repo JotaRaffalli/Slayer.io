@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, Renderer, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { FirebaseListObservable, AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
@@ -11,11 +11,14 @@ import { AngularFireAuth } from "angularfire2/auth";
  * on Ionic pages and navigation.
  */
 @IonicPage()
+
 @Component({
   selector: 'page-murdered',
   templateUrl: 'murdered.html',
 })
 export class Murdered {
+
+@ViewChild('Killed', {read: ElementRef}) Killed;
 
   Parametros: any;
   private authState: Observable<firebase.User>;
@@ -33,11 +36,15 @@ export class Murdered {
   prueba: any;
   prueba2: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private afAuth: AngularFireAuth, public database: AngularFireDatabase) {
-  this.Parametros = navParams.get('Objetivo_Asesinado');
-  this.authState = afAuth.authState;
-  this.authState.subscribe((user: firebase.User) => {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private afAuth: AngularFireAuth, 
+  public database: AngularFireDatabase, public renderer: Renderer) 
+  {
+    this.renderer.setElementStyle(this.Killed.nativeElement, 'top', '0px')
+    this.Parametros = navParams.get('Objetivo_Asesinado');
+    this.authState = afAuth.authState;
+    this.authState.subscribe((user: firebase.User) => {
 
+<<<<<<< HEAD
     
     this.Usuario_Observable = this.database.object('Usuario/'+user.uid);
     this.Usuario_Observable.subscribe(snapshot => {
@@ -66,14 +73,44 @@ export class Murdered {
             });
           });
           
+=======
+      this.Usuario_Observable = this.database.object('Usuario/'+user.uid);
+      this.Usuario_Observable.subscribe(snapshot =>{
+        this.Usuario_Snapshot = snapshot;
+        this.Jugador_Actual_Observable = this.database.object('Temporada/Temporada1/'+this.Usuario_Snapshot.Universidad+'/'+this.Usuario_Snapshot.GrupoActual+'/Jugadores/'+this.Usuario_Snapshot.$key);
+        this.Jugador_Actual_Observable.subscribe(snapshot1 =>{
+          this.Jugador_Actual_Snapshot = snapshot1;
+          this.Jugador_Muerto_Observable = this.database.object('Temporada/Temporada1/'+this.Usuario_Snapshot.Universidad+'/'+this.Usuario_Snapshot.GrupoActual+'/Jugadores/'+this.Parametros);
+          this.Jugador_Muerto_Observable.subscribe(snapshot2 =>{
+            this.Jugador_Muerto_Snapshot = snapshot2;
+            this.Nombre_Jugador_Asesinado = this.Jugador_Muerto_Snapshot.Nombre;
+            this.Nuevo_Objetivo_Observable = this.database.object('Temporada/Temporada1/'+this.Usuario_Snapshot.Universidad+'/'+this.Usuario_Snapshot.GrupoActual+'/Jugadores/'+this.Jugador_Muerto_Snapshot.Objetivo);
+            this.Nuevo_Objetivo_Observable.subscribe(snapshot3 =>{
+              this.Nombre_Nuevo_Objetivo = snapshot3.Nombre;
+            });
+            this.Jugador_Actual_Observable.update({
+              Objetivo: this.Jugador_Muerto_Snapshot.Objetivo,
+              Puntaje: (this.Jugador_Actual_Snapshot.Puntaje + 500)
+            });
+            this.Jugador_Muerto_Observable.set({
+              Muerto: true,
+            });
+            this.Jugador_Muerto_Observable.update({
+              Objetivo: 'no',
+            })
+            
+          });
+>>>>>>> origin/master
           
         });
-         
-      });
+      }); 
     });
+<<<<<<< HEAD
     
       
   });
+=======
+>>>>>>> origin/master
      
 
 
