@@ -28,12 +28,16 @@ export class Murdered {
   Nombre_Jugador_Asesinado: string;
   Nuevo_Objetivo_Observable: FirebaseObjectObservable<any>;
   Nombre_Nuevo_Objetivo: string;
+  puntaje: any;
+  objetivonuevo: any;
+  flag: boolean;
 
   prueba1: any;
   prueba: any;
   prueba2: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private afAuth: AngularFireAuth, public database: AngularFireDatabase) {
+  this.flag = true;
   this.Parametros = navParams.get('Objetivo_Asesinado');
   this.authState = afAuth.authState;
   this.authState.subscribe((user: firebase.User) => {
@@ -56,27 +60,32 @@ export class Murdered {
           this.Nuevo_Objetivo_Observable = this.database.object('Temporada/Temporada1/'+this.Usuario_Snapshot.Universidad+'/'+this.Usuario_Snapshot.GrupoActual+'/Jugadores/'+this.Jugador_Muerto_Snapshot.Objetivo);
           this.Nuevo_Objetivo_Observable.subscribe(snapshot3 => {
             this.Nombre_Nuevo_Objetivo = snapshot3.Nombre;
-            var puntaje = this.Jugador_Actual_Snapshot.Puntaje + 500;
+            if(this.flag){
+            this.puntaje = this.Jugador_Actual_Snapshot.Puntaje + 500
             this.Jugador_Actual_Observable.update({
-              Objetivo: this.Jugador_Muerto_Snapshot.Objetivo,
-              Puntaje: puntaje
-            });
-            this.Jugador_Muerto_Observable.update({
-              Objetivo: 'no',
-            });
+                Objetivo: this.Jugador_Muerto_Snapshot.Objetivo,
+                Puntaje: this.puntaje
+              });
+              this.Jugador_Muerto_Observable.update({
+                Objetivo: 'no',
+              });
+              this.flag = false;
+            }
+            
           });
           
           
         });
+        
          
       });
+
     });
     
       
+    
+
   });
-     
-
-
 }
 
   ionViewDidLoad() {
