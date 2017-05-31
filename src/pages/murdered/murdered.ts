@@ -56,10 +56,10 @@ export class Murdered {
         this.Jugador_Muerto_Observable = this.database.object('Temporada/Temporada1/'+this.Usuario_Snapshot.Universidad+'/'+this.Usuario_Snapshot.GrupoActual+'/Jugadores/'+this.Parametros);
         this.Jugador_Muerto_Observable.subscribe(snapshot2 => {
           this.Jugador_Muerto_Snapshot = snapshot2;
-          this.Nombre_Jugador_Asesinado = this.Jugador_Muerto_Snapshot.Nombre;
+          
           this.Nuevo_Objetivo_Observable = this.database.object('Temporada/Temporada1/'+this.Usuario_Snapshot.Universidad+'/'+this.Usuario_Snapshot.GrupoActual+'/Jugadores/'+this.Jugador_Muerto_Snapshot.Objetivo);
           this.Nuevo_Objetivo_Observable.subscribe(snapshot3 => {
-            this.Nombre_Nuevo_Objetivo = snapshot3.Nombre;
+            
             if(this.flag){
             this.puntaje = this.Jugador_Actual_Snapshot.Puntaje + 500
             this.Jugador_Actual_Observable.update({
@@ -69,6 +69,10 @@ export class Murdered {
               this.Jugador_Muerto_Observable.update({
                 Objetivo: 'no',
               });
+
+              this.Nombre_Jugador_Asesinado = this.Jugador_Muerto_Snapshot.Nombre;
+              this.Nombre_Nuevo_Objetivo = snapshot3.Nombre;
+
               this.flag = false;
             }
             
