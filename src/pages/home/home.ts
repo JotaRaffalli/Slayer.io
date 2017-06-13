@@ -46,7 +46,8 @@ export class HomePage {
   data: FirebaseObjectObservable<any>;
   jugadorObservable: FirebaseObjectObservable<any>;
   targetObservable: FirebaseObjectObservable<any>;
-
+  private loadProgress: number; //Barra de nivel
+  private relacion_nivel_porcentaje: number = 50;
   
 // Constructor
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, public alertController: AlertController, private platform: Platform, 
@@ -104,6 +105,12 @@ export class HomePage {
           equalTo: 'Unimet'
         }
       });
+      
+      this.loadProgress= this.relacion_nivel_porcentaje;
+
+
+
+
       
   }
 
