@@ -36,7 +36,7 @@ export class Login {
    
   }
 
-  
+  //Funcion de Cierre de sesion
   signOut() {
     this.afAuth.auth.signOut();
   }
@@ -47,6 +47,7 @@ export class Login {
     console.log('ionViewDidLoad Login');
   }
 
+  //Funcion de alerta al introducir data erronea
   private presentAlert() {
     let alert = this.alertCtrl.create({
       title: 'Error',

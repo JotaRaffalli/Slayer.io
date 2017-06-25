@@ -30,11 +30,8 @@ export class Murdered {
   Nombre_Nuevo_Objetivo: string;
   puntaje: any;
   objetivonuevo: any;
-  flag: boolean;
+  flag: boolean; //Este flag nos ayuda a no repetir la actualizacion de la informacion por la forma en al que funciona el subscribe
 
-  prueba1: any;
-  prueba: any;
-  prueba2: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private afAuth: AngularFireAuth, public database: AngularFireDatabase) {
   this.flag = true;
@@ -42,21 +39,23 @@ export class Murdered {
   this.authState = afAuth.authState;
   this.authState.subscribe((user: firebase.User) => {
 
-    
+    //Se busca la informacion del usuario con su id en la seccion de la bd de Usuario
     this.Usuario_Observable = this.database.object('Usuario/'+user.uid);
     this.Usuario_Observable.subscribe(snapshot => {
       this.Usuario_Snapshot = snapshot;
 
+      //Se busca informacion del jugador almacenada en la partida con informacion encontrada en la busqueda anterior
       this.Jugador_Actual_Observable = this.database.object('Temporada/Temporada1/'+this.Usuario_Snapshot.Universidad+'/'+this.Usuario_Snapshot.GrupoActual+'/Jugadores/'+this.Usuario_Snapshot.$key);
-      this.Jugador_Actual_Observable.subscribe(snapshot1 => { //NO ENTRA AQUI
+      this.Jugador_Actual_Observable.subscribe(snapshot1 => { 
 
         
-
+        //Se busca la informacion informacion del jugador que fue asesinado
         this.Jugador_Actual_Snapshot = snapshot1;
         this.Jugador_Muerto_Observable = this.database.object('Temporada/Temporada1/'+this.Usuario_Snapshot.Universidad+'/'+this.Usuario_Snapshot.GrupoActual+'/Jugadores/'+this.Parametros);
         this.Jugador_Muerto_Observable.subscribe(snapshot2 => {
           this.Jugador_Muerto_Snapshot = snapshot2;
-          
+
+          //Se busca la informacion del objetivo del jugador que fue asesinado
           this.Nuevo_Objetivo_Observable = this.database.object('Temporada/Temporada1/'+this.Usuario_Snapshot.Universidad+'/'+this.Usuario_Snapshot.GrupoActual+'/Jugadores/'+this.Jugador_Muerto_Snapshot.Objetivo);
           this.Nuevo_Objetivo_Observable.subscribe(snapshot3 => {
             

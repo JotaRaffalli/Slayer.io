@@ -26,7 +26,7 @@ export class LeaderboardModal {
   private Current_User: any;
   private Universidad: String;
 
-
+  
   constructor(public viewCtrl: ViewController, public database: AngularFireDatabase, private afAuth: AngularFireAuth) {
       this.authState = afAuth.authState;
       this.authState.subscribe((user: firebase.User) => {
@@ -52,7 +52,7 @@ export class LeaderboardModal {
       });
   }
 
-  //funciones
+  //funcion de cierre del modal
   CloseModal(){
     this.viewCtrl.dismiss();
   }
