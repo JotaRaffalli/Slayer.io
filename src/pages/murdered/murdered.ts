@@ -60,11 +60,12 @@ export class Murdered {
           this.Nuevo_Objetivo_Observable = this.database.object('Temporada/Temporada1/'+this.Usuario_Snapshot.Universidad+'/'+this.Usuario_Snapshot.GrupoActual+'/Jugadores/'+this.Jugador_Muerto_Snapshot.Objetivo);
           this.Nuevo_Objetivo_Observable.subscribe(snapshot3 => {
             
+            // Sección que actualiza los datos correspondientes
             if(this.flag){
             this.puntaje = this.Jugador_Actual_Snapshot.Puntaje + 500
             this.Jugador_Actual_Observable.update({
-                Objetivo: this.Jugador_Muerto_Snapshot.Objetivo,
-                Puntaje: this.puntaje
+                Objetivo: this.Jugador_Muerto_Snapshot.Objetivo, // Se le asigna el objetivo del jugador muerto
+                Puntaje: this.puntaje                            // Se le actualiza su puntaje
               });
               this.Jugador_Muerto_Observable.update({
                 Objetivo: 'no',

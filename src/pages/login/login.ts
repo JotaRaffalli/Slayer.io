@@ -24,6 +24,7 @@ export class Login {
    public navParams: NavParams, private afAuth: AngularFireAuth) {
   }
 
+  // Iniciar sesión según correo y contraseña
   entrarConCorreo() {
     this.afAuth.auth
       .signInWithEmailAndPassword(this.email, this.pass)
@@ -35,6 +36,7 @@ export class Login {
    
   }
 
+  
   signOut() {
     this.afAuth.auth.signOut();
   }

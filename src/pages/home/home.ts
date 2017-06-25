@@ -19,12 +19,12 @@ import { ModalController } from 'ionic-angular';
 export class HomePage {
 
 // Atributos
-  private plt:Platform;
-  private opcionesDeScan: BarcodeScannerOptions;
+  private plt:Platform; // Objeto para comprobar estatus de los dispositivos
+  private opcionesDeScan: BarcodeScannerOptions; 
   private Usuario_Id: string;
   private ObjetivoEscaneado_Id: string;
   private ObjetivoEscaneado_Observable: FirebaseObjectObservable<any>;
-  private ObjetivoEscaneado: any;
+  private ObjetivoEscaneado: any; 
   private authState: Observable<firebase.User>;
   private ProgressBarComponent;
   group: FirebaseListObservable<any>;
@@ -35,7 +35,7 @@ export class HomePage {
   json: any;
   public dataSnap: any;
   public jugadorSnap: any;
-  grupo: String;
+  grupo: string; 
   puntaje: string;
   objetivolisto: any;
   ObjetivoListoId: string;
@@ -53,20 +53,25 @@ export class HomePage {
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, public alertController: AlertController, private platform: Platform, 
   public database: AngularFireDatabase, private barcode: BarcodeScanner, private afAuth: AngularFireAuth) 
   {
+      /* Primero comprobemos que efectivamente el usuario esta loggeado 
+      y nos suscribimos a él a través de programación reactiva para fijarnos
+      en cambios que puedan ocurrirle durante su sesión. 
+      */
       this.authState = afAuth.authState;
       this.json = afAuth.auth.currentUser;
       this.authState.subscribe((user: firebase.User) => {
-            //console.log('user is: ' + user.uid);
-            this.currentUser = user;
+            this.currentUser = user; // Guardamos el usuario dentro de un objeto de tipo Firebase User
 
             if  (user) 
             { 
-              this.data = this.database.object('/Usuario/'+user.uid);
-                          this.data.subscribe(snapshot => {
+              this.data = this.database.object('/Usuario/'+user.uid); 
+              
+              // Data tendra la información del documento Usuarios de la bd según el id extraido anteriormente
+                    this.data.subscribe(snapshot => {
                     //armamos el objeto
                     this.dataSnap = snapshot;
-                    this.frase = this.dataSnap.Frase;
-                    this.emblema = this.dataSnap.Emblema;
+                    this.frase = this.dataSnap.Frase; // Titulo del jugador
+                    this.emblema = this.dataSnap.Emblema; // Emblema del jugador
                     //agarramos el grupo al que pertenece
                     this.grupo = this.dataSnap.GrupoActual;
                     //agarramos al jugador
@@ -92,26 +97,28 @@ export class HomePage {
              }); 
             }
         });
+
+
+      // Inicializamos la variable que controla los dispositivos con Cordova
       this.plt = platform;
+      // Extras del scanner
       this.opcionesDeScan = {
         prompt:'¡Escanea el codigo QR de tu objetivo!'
       }
+      // Extraemos toda la informació relevante del jugador que sea necesaria para poder jugar
       this.group = this.database.list('/Temporada/Temporada1/Unimet');
       this.temp = this.database.list('/Temporada');
       this.jugador = this.database.object('/Temporada/Temporada1/Unimet/Grupo1/Jugadores/');
       this.uni = this.database.list('/Temporada/Temporada1', {
         query: {
           orderByKey: true,
-          equalTo: 'Unimet'
+          equalTo: 'Unimet' // Estatico, cambiar en supuesto sprint 3 según cambios en la BD
         }
       });
       
-      this.loadProgress= this.relacion_nivel_porcentaje;
+      // Nivel del jugador expresado en una barra de nivel
+      this.loadProgress= this.relacion_nivel_porcentaje; 
 
-
-
-
-      
   }
 
   // Funciones
@@ -124,7 +131,6 @@ export class HomePage {
                 {
                   this.ObjetivoEscaneado_Id = resultado.text; // Buscar con este id
                   this.authState.subscribe((user: firebase.User) => {
-                      //console.log('user is: ' + user.uid);
                       this.currentUser = user;
                       this.data = this.database.object('/Usuario/'+user.uid);
                       this.data.subscribe(snapshot => {
@@ -137,9 +143,10 @@ export class HomePage {
                         //hacemos el snapshot del jugador
                         this.jugadorObservable.subscribe(snapshot2 => {
                         this.jugadorSnap = snapshot2;
+                        // Luego comprobamos que efctivamente se trate del objetivo que se le asignó
                         if (this.ObjetivoEscaneado_Id == snapshot2.Objetivo) 
                          {  
-                          this.navCtrl.push(Murdered, {Objetivo_Asesinado: this.ObjetivoEscaneado_Id}); // Cambiar esto a modals si se puede
+                          this.navCtrl.push(Murdered, {Objetivo_Asesinado: this.ObjetivoEscaneado_Id}); 
                          }   
                          else
                          {
