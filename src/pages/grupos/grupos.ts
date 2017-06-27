@@ -10,11 +10,11 @@ import { Inscripcion } from '../inscripcion/inscripcion';
 })
 export class Grupos {
 
-  group: FirebaseListObservable<any>;
-  temp: FirebaseListObservable<any>;
-  uni: FirebaseListObservable<any>;
-  grupo: any;
-  sala: any;
+  private group: FirebaseListObservable<any>;
+  private temp: FirebaseListObservable<any>;
+  private uni: FirebaseListObservable<any>;
+  private grupo: any;
+  private sala: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -32,16 +32,11 @@ export class Grupos {
       });
   }
 
-  gotoGroup(sala) {
+  goToInscripcion(sala) {
 
     var myJSON = JSON.stringify(sala);
     console.log("El stringify: "+myJSON);
     this.navCtrl.push(Inscripcion, {json: sala});
-
-  var myJSON = JSON.stringify(sala);
-  console.log(myJSON);
-    //this.navCtrl.push(Inscripcion, {sala: sala});
-
   }
 
 }

@@ -11,11 +11,11 @@ import { Observable } from 'rxjs/Observable';
 })
 export class Inscripcion {
 
-  data: FirebaseObjectObservable<any>;
-  dataSnap: any;
-  jugadorObservable: FirebaseObjectObservable<any>;
-  jugadorSnap: any;
-  grupo: String;
+  private data: FirebaseObjectObservable<any>;
+  private dataSnap: any;
+  private jugadorObservable: FirebaseObjectObservable<any>;
+  private jugadorSnap: any;
+  private grupo: String;
   private sala: any;
   private sala_nombre: string;
   private authState: Observable<firebase.User>;

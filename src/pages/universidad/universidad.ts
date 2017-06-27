@@ -45,7 +45,7 @@ export class Universidad {
   });
   }
 
-  gotoGroup(u) {
+  goToGroup(u) {
     this.navCtrl.push(Grupos, {uni: u});
   }
 

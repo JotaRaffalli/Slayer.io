@@ -4,7 +4,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireModule } from 'angularfire2';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 
 
 import { Leaderboard } from '../pages/leaderboard/leaderboard';
@@ -25,9 +24,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  public rootPage: any = HomePage;
 
-  pages: Array<{title: string, component: any}>;
+  public pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, 
   private afAuth: AngularFireAuth) 

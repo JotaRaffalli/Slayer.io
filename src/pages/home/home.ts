@@ -27,25 +27,25 @@ export class HomePage {
   private ObjetivoEscaneado: any; 
   private authState: Observable<firebase.User>;
   private ProgressBarComponent;
-  group: FirebaseListObservable<any>;
-  temp: FirebaseListObservable<any>;
-  uni: FirebaseListObservable<any>;
-  jugador: FirebaseObjectObservable<any>;
+  private group: FirebaseListObservable<any>;
+  private temp: FirebaseListObservable<any>;
+  private uni: FirebaseListObservable<any>;
+  private jugador: FirebaseObjectObservable<any>;
   private currentUser: firebase.User;
-  json: any;
-  public dataSnap: any;
-  public jugadorSnap: any;
-  grupo: string; 
-  puntaje: string;
-  objetivolisto: any;
-  ObjetivoListoId: string;
-  ObjetivoNombre: string;
-  jugadorNombre: string;
-  frase: string;
-  emblema: string;
-  data: FirebaseObjectObservable<any>;
-  jugadorObservable: FirebaseObjectObservable<any>;
-  targetObservable: FirebaseObjectObservable<any>;
+  private json: any;
+  private dataSnap: any;
+  private jugadorSnap: any;
+  private grupo: string; 
+  private puntaje: string;
+  private objetivolisto: any;
+  private ObjetivoListoId: string;
+  private ObjetivoNombre: string;
+  private jugadorNombre: string;
+  private frase: string;
+  private emblema: string;
+  private data: FirebaseObjectObservable<any>;
+  private jugadorObservable: FirebaseObjectObservable<any>;
+  private targetObservable: FirebaseObjectObservable<any>;
   private loadProgress: number; //Barra de nivel
   private relacion_nivel_porcentaje: number = 50;
   
@@ -186,10 +186,6 @@ export class HomePage {
   private signOut() 
   {
     this.afAuth.auth.signOut();
-  }
-
-  gotoGroup(g) {
-    this.navCtrl.push(Inscripcion, {group: this.group});
   }
 
   GoToLeaderboard() {

@@ -7,7 +7,6 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { Leaderboard } from '../pages/leaderboard/leaderboard';
 import { PatchNotes } from '../pages/patch-notes/patch-notes';
 import { Perfil } from '../pages/perfil/perfil';
@@ -42,7 +41,6 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
     Inscripcion,
     Perfil, 
     PatchNotes,
@@ -66,7 +64,6 @@ export const firebaseConfig = {
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,
     Inscripcion, 
     Perfil, 
     PatchNotes,

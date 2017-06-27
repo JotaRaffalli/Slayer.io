@@ -13,7 +13,7 @@
     </div>
     <br>
     <ion-list>
-        <button ion-item *ngFor="let g of group | async" (click)="gotoGroup(g)">
+        <button ion-item *ngFor="let g of group | async" (click)="goToInscripcion(g)">
             {{ g.Nombre }} 
             <div item-right>
                 ({{ g.CapacidadAct}}/{{ g.CapacidadMax}})

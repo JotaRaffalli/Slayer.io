@@ -17,20 +17,20 @@ import { AngularFireAuth } from "angularfire2/auth";
 })
 export class Murdered {
 
-  Parametros: any;
+  public Parametros: any;
   private authState: Observable<firebase.User>;
-  Jugador_Actual_Observable: FirebaseObjectObservable<any>;
-  Jugador_Actual_Snapshot: any;
+  private Jugador_Actual_Observable: FirebaseObjectObservable<any>;
+  private Jugador_Actual_Snapshot: any;
   private Usuario_Observable: FirebaseObjectObservable<any>;
-  Usuario_Snapshot: any;
-  Jugador_Muerto_Observable: FirebaseObjectObservable<any>;
-  Jugador_Muerto_Snapshot: any;
-  Nombre_Jugador_Asesinado: string;
-  Nuevo_Objetivo_Observable: FirebaseObjectObservable<any>;
-  Nombre_Nuevo_Objetivo: string;
-  puntaje: any;
-  objetivonuevo: any;
-  flag: boolean; //Este flag nos ayuda a no repetir la actualizacion de la informacion por la forma en al que funciona el subscribe
+  private Usuario_Snapshot: any;
+  private Jugador_Muerto_Observable: FirebaseObjectObservable<any>;
+  private Jugador_Muerto_Snapshot: any;
+  private Nombre_Jugador_Asesinado: string;
+  private Nuevo_Objetivo_Observable: FirebaseObjectObservable<any>;
+  private Nombre_Nuevo_Objetivo: string;
+  private puntaje: any;
+  private objetivonuevo: any;
+  private flag: boolean; //Este flag nos ayuda a no repetir la actualizacion de la informacion por la forma en al que funciona el subscribe
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private afAuth: AngularFireAuth, public database: AngularFireDatabase) {
@@ -91,9 +91,5 @@ export class Murdered {
 
   });
 }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad Murdered');
-  }
 
 }

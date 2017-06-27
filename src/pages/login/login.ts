@@ -17,8 +17,8 @@ import * as firebase from 'firebase/app';
 })
 export class Login {
 
- email: string;
- pass: string;
+ public email: string;
+ public pass: string;
 
   constructor(private alertCtrl: AlertController, public navCtrl: NavController,
    public navParams: NavParams, private afAuth: AngularFireAuth) {
@@ -39,12 +39,6 @@ export class Login {
   //Funcion de Cierre de sesion
   signOut() {
     this.afAuth.auth.signOut();
-  }
-
-
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad Login');
   }
 
   //Funcion de alerta al introducir data erronea
