@@ -48,6 +48,7 @@ export class HomePage {
   private targetObservable: FirebaseObjectObservable<any>;
   private loadProgress: number; //Barra de nivel
   private relacion_nivel_porcentaje: number = 50;
+  private ganador: string;
   
 // Constructor
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, public alertController: AlertController, private platform: Platform, 
@@ -67,7 +68,7 @@ export class HomePage {
               this.data = this.database.object('/Usuario/'+user.uid); 
               
               // Data tendra la información del documento Usuarios de la bd según el id extraido anteriormente
-                    this.data.subscribe(snapshot => {
+              this.data.subscribe(snapshot => {
                     //armamos el objeto
                     this.dataSnap = snapshot;
                     this.frase = this.dataSnap.Frase; // Titulo del jugador
@@ -84,6 +85,7 @@ export class HomePage {
                         console.log(this.jugadorSnap.Puntaje);
                         this.puntaje = this.jugadorSnap.Puntaje;
                         console.log(this.jugadorSnap.Objetivo);
+                        this.ganador = snapshot2.Ganador; //Esta variable determina si el juego ya termino para mostrar al ganador
 
                         this.targetObservable = this.database.object('/Temporada/Temporada1/'+this.dataSnap.Universidad+'/'+this.grupo+'/Jugadores/'+this.jugadorSnap.Objetivo);
                         this.targetObservable.subscribe(snapshot3 => {
@@ -94,7 +96,9 @@ export class HomePage {
                         
                     }); 
 
-             }); 
+              
+              }); 
+              
             }
         });
 
@@ -183,6 +187,9 @@ export class HomePage {
         });
         
   }
+
+
+
   private signOut() 
   {
     this.afAuth.auth.signOut();

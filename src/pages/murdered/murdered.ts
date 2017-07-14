@@ -31,6 +31,7 @@ export class Murdered {
   private puntaje: any;
   private objetivonuevo: any;
   private flag: boolean; //Este flag nos ayuda a no repetir la actualizacion de la informacion por la forma en al que funciona el subscribe
+  private Partida_Actual_Observable: FirebaseObjectObservable<any>;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private afAuth: AngularFireAuth, public database: AngularFireDatabase) {
@@ -61,17 +62,29 @@ export class Murdered {
             
             // Sección que actualiza los datos correspondientes
             if(this.flag){
-            this.puntaje = this.Jugador_Actual_Snapshot.Puntaje + 500
+            this.puntaje = this.Jugador_Actual_Snapshot.Puntaje + 500;
             this.Jugador_Actual_Observable.update({
                 Objetivo: this.Jugador_Muerto_Snapshot.Objetivo, // Se le asigna el objetivo del jugador muerto
                 Puntaje: this.puntaje                            // Se le actualiza su puntaje
               });
+
+
+              
               this.Jugador_Muerto_Observable.update({
                 Objetivo: 'no',
               });
 
               this.Nombre_Jugador_Asesinado = this.Jugador_Muerto_Snapshot.Nombre;
               this.Nombre_Nuevo_Objetivo = snapshot3.Nombre;
+              
+              //El siguiente if() determina si el juego termina
+              if(this.Jugador_Actual_Snapshot.Objetivo = this.Jugador_Actual_Snapshot.$key){
+                this.Partida_Actual_Observable = this.database.object('Temporada/Temporada1/'+this.Usuario_Snapshot.Universidad+'/'+this.Usuario_Snapshot.GrupoActual);
+                this.Partida_Actual_Observable.update({
+                  Ganador: this.Jugador_Actual_Snapshot.Nombre
+                });
+
+              }
 
               this.flag = false;
             }
