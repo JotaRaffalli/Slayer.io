@@ -15,66 +15,104 @@
 <ion-content padding>
     <!-- ____________________________________Home Principal de Slayer Io____________________________________ -->
 
-
-    <!-- info del jugador-->
+<!-- Caso en hay un ganador -->
+<div *ngIf="ganador!=0;else other">
     <ion-card>
-
         <ion-card-content>
-            <ion-card-title align="center">
-                <h2> ¡Bienvenido <strong>{{ jugadorNombre }}</strong>!</h2>
-                <p>Level: 15 </p>
-            </ion-card-title>
-            <div align="center">
-
-                <div style="padding-bottom:5px;">
-                    <p>Título: "{{ frase }}" </p>
-                    <p>Emblema:
-                        <ion-icon name="{{ emblema }}"></ion-icon>
-                    </p>
-                </div>
-                Próximo Nivel: 16
+        <!-- Caso en que tú eres un ganador -->
+            <div *ngIf="ganador==user.uid;else loser">
+                <ion-card-title align="center">
+                    <h2>¡Felicidades <strong>{{ jugadorNombre }}</strong>!</h2>
+                    <p>Eres un maestro del sigilo y el hitman perfecto</p>
+                </ion-card-title>
+            </div>
+        <!-- Caso en que tú eres un perdedor -->
+            <ng-template #loser>    
                 <div>
-                    <progress-bar [progress]="loadProgress"></progress-bar>
+                    <ion-card-title align="center">
+                        <h2>Lo sentimos <strong>{{ jugadorNombre }}</strong></h2>
+                        <p>EL juego ha terminado y has perdido</p>
+                    </ion-card-title>
+                </div>
+            </ng-template>
+        </ion-card-content>
+    </ion-card>
+</div>
+<!-- Caso en que nadie ha ganado -->
+    <ng-template #other>
+    <!-- Caso en el que sigues jugando -->
+    <div *ngIf="jugadorSnap.Objetivo!=no;else dead">
+        <!-- info del jugador -->
+        <ion-card>
+            <ion-card-content>
+                <ion-card-title align="center">
+                    <h2> ¡Bienvenido <strong>{{ jugadorNombre }}</strong>!</h2>
+                    <p>Level: 15 </p>
+                </ion-card-title>
+                <div align="center">
+
+                    <div style="padding-bottom:5px;">
+                        <p>Título: "{{ frase }}" </p>
+                        <p>Emblema:
+                            <ion-icon name="{{ emblema }}"></ion-icon>
+                        </p>
+                    </div>
+                    Próximo Nivel: 16
+                    <div>
+                        <progress-bar [progress]="loadProgress"></progress-bar>
+                    </div>
+
+                </div>
+            </ion-card-content>
+
+        </ion-card>
+
+        <!-- objetivo y juego-->
+
+        <ion-card>
+            <!-- Aquí se podria poner avatar de la entidad-->
+            <ion-card-content>
+                <ion-card-title>
+                    <h1 align="center">Objetivo a asesinar</h1>
+                </ion-card-title>
+                <div align="center">
+                    <strong>{{ObjetivoNombre}}</strong>
+                    <p>Nivel: ObjetivoNivel </p>
+                    <p>Puntaje de partida: {{ puntaje }}</p>
                 </div>
 
-            </div>
-        </ion-card-content>
+                <div style="padding-top: 3px" align="center">
+                    <p><strong>Información de partida</strong>
+                        <p>
+                </div>
 
-    </ion-card>
+                <ion-fab center>
+                    <button ion-fab color="primary" (click)="GoToLeaderboard()">                    
+                        <ion-icon name="information-circle"></ion-icon>
+                    </button>
+                </ion-fab>
+            </ion-card-content>
 
-    <!-- objetivo y juego-->
+        </ion-card>
 
-    <ion-card>
-        <!-- Aquí se podria poner avatar de la entidad-->
-        <ion-card-content>
-            <ion-card-title>
-                <h1 align="center">Objetivo a asesinar</h1>
-            </ion-card-title>
-            <div align="center">
-                <strong>{{ObjetivoNombre}}</strong>
-                <p>Nivel: ObjetivoNivel </p>
-                <p>Puntaje de partida: {{ puntaje }}</p>
-            </div>
-
-            <div style="padding-top: 3px" align="center">
-                <p><strong>Información de partida</strong>
-                    <p>
-            </div>
-
-            <ion-fab center>
-                <button ion-fab color="primary" (click)="GoToLeaderboard()">                    
-                    <ion-icon name="information-circle"></ion-icon>
-                </button>
+        <div>
+            <ion-fab bottom center>
+                <button ion-fab color="danger" big (click)="Asesinar()">
+                        <ion-icon name="locate"></ion-icon>
+                    </button>
             </ion-fab>
-        </ion-card-content>
-
-    </ion-card>
-
-    <div>
-        <ion-fab bottom center>
-            <button ion-fab color="danger" big (click)="Asesinar()">
-                    <ion-icon name="locate"></ion-icon>
-                </button>
-        </ion-fab>
-    </div>
-</ion-content>
+        </div>
+        </div>
+        </ng-template>
+        <!-- Caso en el que morsite -->
+        <ng-template #dead>
+            <ion-card>
+            <ion-card-content>
+                <ion-card-title align="center">
+                    <h2>¡Haz Muerto!</h2>
+                    <p>Espera a que el juego acabe para unirte a otra sala</p>
+                </ion-card-title>
+            </ion-card-content>
+            </ion-card>
+        </ng-template>
+    </ion-content>
