@@ -14,11 +14,19 @@
 
 
 <ion-content padding>
+<div *ngIf="!flag_ganador;else gano">
   <div align="center">
     <h3> Has asesinado a {{Nombre_Jugador_Asesinado}} </h3>
     <h4> Por ello has obtenido 500 puntos </h4>
     <h3> Tu nuevo objetivo es: {{Nombre_Nuevo_Objetivo}} </h3>
   </div>
+</div>
+<ng-template #gano>
+  <div align="center">
+    <h3> Has asesinado a {{Nombre_Jugador_Asesinado}}, que era el último jugador </h3>
+    <h1 align="center"> ¡GANASTE EL JUEGO! </h1> 
+  </div>
+</ng-template>
   <!--<div>
     <button ion-fab color="primary" (click)="GoToLeaderboard()">                    
       <ion-icon name="information-circle"></ion-icon>

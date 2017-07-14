@@ -48,7 +48,9 @@ export class HomePage {
   private targetObservable: FirebaseObjectObservable<any>;
   private loadProgress: number; //Barra de nivel
   private relacion_nivel_porcentaje: number = 50;
+  private ganadorObservable: FirebaseObjectObservable<any>;
   private ganador: string;
+  private userID: string;
   
 // Constructor
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, public alertController: AlertController, private platform: Platform, 
@@ -65,6 +67,7 @@ export class HomePage {
 
             if  (user) 
             { 
+              this.userID = user.uid;
               this.data = this.database.object('/Usuario/'+user.uid); 
               
               // Data tendra la información del documento Usuarios de la bd según el id extraido anteriormente
@@ -85,13 +88,15 @@ export class HomePage {
                         console.log(this.jugadorSnap.Puntaje);
                         this.puntaje = this.jugadorSnap.Puntaje;
                         console.log(this.jugadorSnap.Objetivo);
-                        this.ganador = snapshot2.Ganador; //Esta variable determina si el juego ya termino para mostrar al ganador
-
                         this.targetObservable = this.database.object('/Temporada/Temporada1/'+this.dataSnap.Universidad+'/'+this.grupo+'/Jugadores/'+this.jugadorSnap.Objetivo);
                         this.targetObservable.subscribe(snapshot3 => {
                         this.objetivolisto = snapshot3;
                         this.ObjetivoNombre = this.objetivolisto.Nombre;
                         this.ObjetivoListoId = this.objetivolisto.$key;
+                        this.ganadorObservable = this.database.object('/Temporada/Temporada1/'+this.dataSnap.Universidad+'/'+this.grupo);
+                        this.ganadorObservable.subscribe(snapshot3 => {                       
+                              this.ganador = snapshot3.Ganador; //Esta variable determina si el juego ya termino para mostrar al ganador
+                        });
                         });
                         
                     }); 

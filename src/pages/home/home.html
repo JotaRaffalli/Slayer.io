@@ -16,22 +16,22 @@
     <!-- ____________________________________Home Principal de Slayer Io____________________________________ -->
 
 <!-- Caso en hay un ganador -->
-<div *ngIf="ganador!=0;else other">
+<div *ngIf="ganador!='0';else other">
     <ion-card>
         <ion-card-content>
         <!-- Caso en que tú eres un ganador -->
-            <div *ngIf="ganador==user.uid;else loser">
+            <div *ngIf="ganador==userID;else loser">
                 <ion-card-title align="center">
-                    <h2>¡Felicidades <strong>{{ jugadorNombre }}</strong>!</h2>
-                    <p>Eres un maestro del sigilo y el hitman perfecto</p>
+                    <h2 align="center">¡Felicidades <strong>{{ jugadorNombre }}</strong>, haz ganado!</h2>
+                    <p align="center">Eres un maestro del sigilo y el hitman perfecto</p>
                 </ion-card-title>
             </div>
         <!-- Caso en que tú eres un perdedor -->
-            <ng-template #loser>    
+            <ng-template #loser>   
                 <div>
                     <ion-card-title align="center">
-                        <h2>Lo sentimos <strong>{{ jugadorNombre }}</strong></h2>
-                        <p>EL juego ha terminado y has perdido</p>
+                        <h2 align="center">Lo sentimos <strong>{{ jugadorNombre }}</strong></h2>
+                        <p align="center">EL juego ha terminado y has perdido</p>
                     </ion-card-title>
                 </div>
             </ng-template>
@@ -41,7 +41,7 @@
 <!-- Caso en que nadie ha ganado -->
     <ng-template #other>
     <!-- Caso en el que sigues jugando -->
-    <div *ngIf="jugadorSnap.Objetivo!=no;else dead">
+    <div *ngIf="jugadorSnap.Objetivo!='no';else dead">
         <!-- info del jugador -->
         <ion-card>
             <ion-card-content>
@@ -109,8 +109,8 @@
             <ion-card>
             <ion-card-content>
                 <ion-card-title align="center">
-                    <h2>¡Haz Muerto!</h2>
-                    <p>Espera a que el juego acabe para unirte a otra sala</p>
+                    <h2 align="center">¡Haz Muerto!</h2>
+                    <p align="center">Espera a que el juego acabe para unirte a otra sala</p>
                 </ion-card-title>
             </ion-card-content>
             </ion-card>

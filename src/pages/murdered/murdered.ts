@@ -31,11 +31,13 @@ export class Murdered {
   private puntaje: any;
   private objetivonuevo: any;
   private flag: boolean; //Este flag nos ayuda a no repetir la actualizacion de la informacion por la forma en al que funciona el subscribe
+  private flag_ganador: boolean; //Flag para anunciar a la persona que gana.
   private Partida_Actual_Observable: FirebaseObjectObservable<any>;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private afAuth: AngularFireAuth, public database: AngularFireDatabase) {
   this.flag = true;
+  this.flag_ganador = false;
   this.Parametros = navParams.get('Objetivo_Asesinado');
   this.authState = afAuth.authState;
   this.authState.subscribe((user: firebase.User) => {
@@ -79,9 +81,10 @@ export class Murdered {
               
               //El siguiente if() determina si el juego termina
               if(this.Jugador_Actual_Snapshot.Objetivo = this.Jugador_Actual_Snapshot.$key){
+                this.flag_ganador = true;
                 this.Partida_Actual_Observable = this.database.object('Temporada/Temporada1/'+this.Usuario_Snapshot.Universidad+'/'+this.Usuario_Snapshot.GrupoActual);
                 this.Partida_Actual_Observable.update({
-                  Ganador: this.Jugador_Actual_Snapshot.Nombre
+                  Ganador: this.Usuario_Snapshot.$key
                 });
 
               }
